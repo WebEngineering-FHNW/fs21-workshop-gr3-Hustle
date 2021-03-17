@@ -5,19 +5,61 @@
     <title>Gruppe 3 - CoronaHustle</title>
     <link rel="stylesheet" href="../resources/lofi.css">
 </head>
-<body alignment="center">
-<div id="spacer"></div>
-<div id="focusBox">
-    Fokus:
-    <select>
-        <option>positiv getestet</option>
-    </select>
-</div>
-<div id="timeBox"></div>
-<div id="cantonsBox"></div>
-<div id="kpiBox"></div>
-<div id="rawdataBox"></div>
+<body>
+<div id="content" width="600px" align="center">
+    <table id="contentTable" border="2">
+        <tr>
+            <td>
+                <div id="focusBox">
+                    Fokus:
+                    <select>
+                        <option>positiv getestet</option>
+                    </select>
 
+                    </br>
+
+                    Zeit <input type="button" value="<>" text="vertauschen"/> Kanton
+                </div>
+            </td>
+            <td>Timebox</td>
+        </tr>
+        <tr>
+            <td rowspan="2">
+                <div id="cantonsBox">
+                    <table id="cantonsTable" border="1">
+                        <tr>
+                            <th>
+                                <input type="button" value="Auswahl zurücksetzen"/>
+                            </th>
+                        </tr>
+                        <tr>
+                            <td>Aargau</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Basel-Stadt
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Basel-Land
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </td>
+            <td><div id="kpiBox">KPI Box</div></td>
+        </tr>
+        <tr>
+            <td><div id="rawdataBox">raw data box</div></td>
+        </tr>
+    </table>
+
+    </br>
+
+
+
+</div>
 
 </body>
 </html>
