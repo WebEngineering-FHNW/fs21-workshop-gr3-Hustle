@@ -7,11 +7,55 @@
 </head>
 <body>
 
-<div id="focusBox"></div>
-<div id="timeBox"></div>
-<div id="cantonsBox"></div>
-<div id="kpiBox"></div>
-<div id="rawdataBox"></div>
+
+<div id="timeBox">
+
+    <div id="yearsBox">
+        <label id="year2020">2020</label>
+        <label id="year2021">2021</label>
+
+    </div>
+
+    <g transform="translate(0,400)">
+        <g transform="scale(1,-1)">
+            <svg viewBox="0 0 870 200">
+
+                <rect id="pillar1" x="0" y="0" width="50" height="200" fill="grey" stroke="black" stroke-width="1"/>
+                <rect id="pillar2" x="50" y="80" width="50" height="120" fill="grey" stroke="black"
+                      stroke-width="1"/>
+                <rect id="pillar3" x="100" y="60" width="50" height="140" fill="grey" stroke="black"
+                      stroke-width="1"/>
+                <rect id="pillar4" x="150" y="0" width="50" height="200" class="selected" stroke="black"
+                      stroke-width="1"/>
+                <rect id="pillar5" x="200" y="80" width="50" height="120" class="selected" stroke="black"
+                      stroke-width="1"/>
+                <rect id="pillar6" x="250" y="60" width="50" height="140" class="selected" stroke="black"
+                      stroke-width="1"/>
+                <rect id="pillar7" x="300" y="0" width="50" height="200" fill="grey" stroke="black"
+                      stroke-width="1"/>
+                <rect id="pillar8" x="350" y="80" width="50" height="120" fill="grey" stroke="black"
+                      stroke-width="1"/>
+                <rect id="pillar9" x="400" y="60" width="50" height="140" fill="grey" stroke="black"
+                      stroke-width="1"/>
+
+                <path class="path1" stroke-width="5" stroke="black" d="M0 200 l550 0"/>
+
+            </svg>
+        </g>
+    </g>
+
+    <div id="datesBox">
+        <label>01.01</label>
+        <label class="labelMarginDate">01.05</label>
+        <label class="labelMarginDate">01.09</label>
+
+        <label class="labelMarginDate">01.01</label>
+        <label class="labelMarginDate">01.05</label>
+        <label class="labelMarginDate">01.09</label>
+    </div>
+
+
+</div>
 
 
 </body>

@@ -1,0 +1,25 @@
+#timeBox {
+    align-content: center;
+}
+
+#timeBox .selected {
+    fill: #548BDF
+}
+
+div > #year2021 {
+    margin-left: 380px;
+}
+
+#yearsBox {
+    font-size: 20px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+#datesBox {
+    font-size: 18px;
+}
+
+.labelMarginDate {
+    margin-left: 100px;
+}
