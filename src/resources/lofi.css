@@ -29,7 +29,7 @@ ul#cantonList{
     padding-left:1em;
     padding-right:1em;
 }
-li#cantonList{
+li{
     list-style:none;
 }
 
@@ -46,9 +46,18 @@ div.reset{
 }
 
 div.liC{
-    padding: 1em;
+    padding: 0em;
+    max-height: 40px;
     border-width: 1px;
     border-top-width: 0px;
     border-style: solid;
     border-color: black;
+}
+
+div.rawdataBox{
+
+}
+
+table#rawDataTable{
+    margin: 1em;
 }
