@@ -23,3 +23,35 @@ div > #year2021 {
 .labelMarginDate {
     margin-left: 100px;
 }
+
+.kpi-box-1 {
+    /*border: 2px solid #548BDF;*/
+    background-color: #C4C4C4;
+    height: 70px;
+    width: 100px;
+    text-align: center;
+    vertical-align: middle;
+    display: table-cell;
+}
+
+.kpi-box-5 {
+
+}
+
+.kpi-box-small {
+    /*border: 2px solid #548BDF;*/
+    background-color: #C4C4C4;
+    height: 50px;
+    width: 70px;
+    text-align: center;
+    vertical-align: middle;
+    display: table-cell;
+}
+
+.kpi-info {
+    font-size: 14px;
+}
+
+.kpi-number {
+    font-size: 18px;
+}
