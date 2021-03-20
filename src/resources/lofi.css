@@ -16,8 +16,9 @@ main {
     font-size: 1em;
 }
 
-checkbox.cCheckbox{
-
+div#focusBox{
+    padding: 1em;
+    text-align: center;
 }
 
 label.selected{
