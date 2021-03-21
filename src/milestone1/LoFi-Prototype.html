@@ -35,16 +35,19 @@
                         <g transform="scale(1,-1)">
                             <svg viewBox="0 0 870 200">
 
-                                <rect id="pillar1" x="0" y="0" width="50" height="200" fill="grey" stroke="black" stroke-width="1"/>
+                                <rect id="pillar1" x="0" y="0" width="50" height="200" fill="grey" stroke="black"
+                                      stroke-width="1"/>
                                 <rect id="pillar2" x="50" y="80" width="50" height="120" fill="grey" stroke="black"
                                       stroke-width="1"/>
                                 <rect id="pillar3" x="100" y="60" width="50" height="140" fill="grey" stroke="black"
                                       stroke-width="1"/>
                                 <rect id="pillar4" x="150" y="0" width="50" height="200" class="selected" stroke="black"
                                       stroke-width="1"/>
-                                <rect id="pillar5" x="200" y="80" width="50" height="120" class="selected" stroke="black"
+                                <rect id="pillar5" x="200" y="80" width="50" height="120" class="selected"
+                                      stroke="black"
                                       stroke-width="1"/>
-                                <rect id="pillar6" x="250" y="60" width="50" height="140" class="selected" stroke="black"
+                                <rect id="pillar6" x="250" y="60" width="50" height="140" class="selected"
+                                      stroke="black"
                                       stroke-width="1"/>
                                 <rect id="pillar7" x="300" y="0" width="50" height="200" fill="grey" stroke="black"
                                       stroke-width="1"/>
@@ -84,32 +87,43 @@
             <td rowspan="2">
                 <div id="cantonBox">
                     <ul id="cantonList">
-                        <li><div class="lic, reset" ><input type="button" value="Auswahl zurücksetzen" id="cantonResetButton"/></div></li>
-                        <li><div class="liC" style="background: linear-gradient(to right, lightblue 0%,lightblue 70%,white 70%,white 100%);"><input type="checkbox" id="cheAG" class="cCheckbox" checked/><label for="cheAG" class="selected">Aargau</label></div></li>
-                        <li><div class="liC" style="background: linear-gradient(to right, lightblue 0%,lightblue 80%,white 80%,white 100%);"><input type="checkbox" id="cheBS" class="cCheckbox" checked/><label for="cheBS" class="selected">Basel-Stadt</label></div></li>
-                        <li><div class="liC" style="background: linear-gradient(to right, lightblue 0%,lightblue 50%,white 50%,white 100%);"><input type="checkbox" id="cheBL" class="cCheckbox" /><label for="cheBL">Basel-Land</label></div></li>
-                        <li><div class="liC"><input type="checkbox" id="asdf" class="cCheckbox" /><label for="asdf">...</label></div></li>
+                        <li>
+                            <div class="lic, reset"><input type="button" value="Auswahl zurücksetzen"
+                                                           id="cantonResetButton"/></div>
+                        </li>
+                        <li>
+                            <div class="liC">
+                                <svg width="200" height="40" style="margin:0;">
+                                    <rect x="0" y="0" width="85%" height="100%" fill="lightblue" style="margin:0;"/>
+                                    <text x="20" y="25" style="margin:0;" fill="blue">Aargau</text>
+                                </svg>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="liC">
+                                <svg width="200" height="40" style="margin:0;">
+                                    <rect x="0" y="0" width="65%" height="100%" fill="lightblue" style="margin:0;"/>
+                                    <text x="20" y="25" style="margin:0;" fill="blue">Basel-Stadt</text>
+                                </svg>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="liC">
+                                <svg width="200" height="40" style="margin:0;">
+                                    <rect x="0" y="0" width="70%" height="100%" fill="lightblue" style="margin:0;"/>
+                                    <text x="20" y="25" style="margin:0;">Basel-Land</text>
+                                </svg>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="liC">
+                                <svg width="200" height="40" style="margin:0;">
+                                    <rect x="0" y="0" width="60%" height="40" fill="lightblue" style="margin:0;"/>
+                                    <text x="20" y="25" style="margin:0;">...</text>
+                                </svg>
+                            </div>
+                        </li>
                     </ul>
-                    <table id="cantonsTable" border="1">
-                        <tr>
-                            <th>
-                                <input type="button" value="Auswahl zurücksetzen"/>
-                            </th>
-                        </tr>
-                        <tr>
-                            <td>Aargau</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                Basel-Stadt
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                Basel-Land
-                            </td>
-                        </tr>
-                    </table>
                 </div>
             </td>
 
@@ -152,7 +166,41 @@
         </tr>
         <tr>
             <td>
-                <div id="rawdataBox">raw data box</div>
+                <div id="rawdataBox">
+                    <table id="rawDataTable" border="1">
+                        <tr>
+                            <th>
+                                Kanton
+                            </th>
+                            <th>
+                                Fokus (positiv getestet)
+                            </th>
+                            <th>
+                                Hospitalisiert
+                            </th>
+                            <th>
+                                künstlich Beatmet
+                            </th>
+                            <th>
+                                verstorben
+                            </th>
+                        </tr>
+                        <tr>
+                            <th>Aargau</th>
+                            <td>1500</td>
+                            <td>500</td>
+                            <td>150</td>
+                            <td>400</td>
+                        </tr>
+                        <tr>
+                            <th>Basel-Stadt</th>
+                            <td>1000</td>
+                            <td>500</td>
+                            <td>150</td>
+                            <td>400</td>
+                        </tr>
+                    </table>
+                </div>
             </td>
         </tr>
     </table>
