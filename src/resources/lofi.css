@@ -16,8 +16,9 @@ main {
     font-size: 1em;
 }
 
-checkbox.cCheckbox{
-
+div#focusBox{
+    padding: 1em;
+    text-align: center;
 }
 
 label.selected{
@@ -46,7 +47,8 @@ div.reset{
 }
 
 div.liC{
-    padding: 1em;
+    padding: 0em;
+    max-height: 40px;
     border-width: 1px;
     border-top-width: 0;
     border-style: solid;
@@ -86,6 +88,14 @@ div > #year2021 {
     text-align: center;
     vertical-align: middle;
     display: table-cell;
+}
+
+div.rawdataBox{
+
+}
+
+table#rawDataTable{
+    margin: 1em;
 }
 
 .kpi-box-5 {
