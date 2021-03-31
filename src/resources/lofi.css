@@ -168,10 +168,17 @@ table#rawDataTable {
     /*font-weight: bold;*/
     font-size: 16px;
     /*text-align: center;*/
+    flex-grow: 1
+}
+
+.break {
+    flex-basis: 100%;
+    width: 0;
+
 }
 
 #focusAside {
-    min-width: 300px;
+    max-width: 250px;
 }
 
 #timeAside {
@@ -179,7 +186,7 @@ table#rawDataTable {
 }
 
 #cantonAside {
-    min-width: 300px;
+    max-width: 250px;
 }
 
 #kpiAside {
