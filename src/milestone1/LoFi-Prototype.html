@@ -7,203 +7,205 @@
 </head>
 <body>
 <div id="content" width="600px" align="center">
-    <table id="contentTable" border="2">
-        <tr>
-            <td>
-                <div id="focusBox">
-                    Fokus:
-                    <select>
-                        <option>positiv getestet</option>
-                    </select>
+    <!--    <table id="contentTable" border="2">-->
 
-                    </br>
+    <!--- Flexbox Test --->
+    <div class="flex-container">
 
-                    Zeit <input type="button" value="<>" text="vertauschen"/> Kanton
+        <aside class="flex-item" id="focusAside">
+            <div id="focusBox">
+                Fokus:
+                <select>
+                    <option>positiv getestet</option>
+                </select>
+
+                </br>
+
+                Zeit <input type="button" value="<>" text="vertauschen"/> Kanton
+            </div>
+        </aside>
+        <aside class="flex-item" id="timeAside">
+            <div id="timeBox">
+
+                <div id="yearsBox">
+                    <label id="year2020">2020</label>
+                    <label id="year2021">2021</label>
+
                 </div>
-            </td>
 
-            <td>
-                <div id="timeBox">
+                <g transform="translate(0,400)">
+                    <g transform="scale(1,-1)">
+                        <svg viewBox="0 0 870 200">
 
-                    <div id="yearsBox">
-                        <label id="year2020">2020</label>
-                        <label id="year2021">2021</label>
+                            <rect id="pillar1" x="0" y="0" width="50" height="200" fill="grey" stroke="black"
+                                  stroke-width="1"/>
+                            <rect id="pillar2" x="50" y="80" width="50" height="120" fill="grey" stroke="black"
+                                  stroke-width="1"/>
+                            <rect id="pillar3" x="100" y="60" width="50" height="140" fill="grey" stroke="black"
+                                  stroke-width="1"/>
+                            <rect id="pillar4" x="150" y="0" width="50" height="200" class="selected" stroke="black"
+                                  stroke-width="1"/>
+                            <rect id="pillar5" x="200" y="80" width="50" height="120" class="selected"
+                                  stroke="black"
+                                  stroke-width="1"/>
+                            <rect id="pillar6" x="250" y="60" width="50" height="140" class="selected"
+                                  stroke="black"
+                                  stroke-width="1"/>
+                            <rect id="pillar7" x="300" y="0" width="50" height="200" fill="grey" stroke="black"
+                                  stroke-width="1"/>
+                            <rect id="pillar8" x="350" y="80" width="50" height="120" fill="grey" stroke="black"
+                                  stroke-width="1"/>
+                            <rect id="pillar9" x="400" y="60" width="50" height="140" fill="grey" stroke="black"
+                                  stroke-width="1"/>
+                            <rect id="pillar10" x="450" y="0" width="50" height="200" fill="grey" stroke="black"
+                                  stroke-width="1"/>
+                            <rect id="pillar11" x="500" y="80" width="50" height="120" fill="grey" stroke="black"
+                                  stroke-width="1"/>
+                            <rect id="pillar12" x="550" y="60" width="50" height="140" fill="grey" stroke="black"
+                                  stroke-width="1"/>
 
-                    </div>
+                            <path class="path1" stroke-width="5" stroke="black" d="M0 200 l550 0"/>
 
-                    <g transform="translate(0,400)">
-                        <g transform="scale(1,-1)">
-                            <svg viewBox="0 0 870 200">
-
-                                <rect id="pillar1" x="0" y="0" width="50" height="200" fill="grey" stroke="black"
-                                      stroke-width="1"/>
-                                <rect id="pillar2" x="50" y="80" width="50" height="120" fill="grey" stroke="black"
-                                      stroke-width="1"/>
-                                <rect id="pillar3" x="100" y="60" width="50" height="140" fill="grey" stroke="black"
-                                      stroke-width="1"/>
-                                <rect id="pillar4" x="150" y="0" width="50" height="200" class="selected" stroke="black"
-                                      stroke-width="1"/>
-                                <rect id="pillar5" x="200" y="80" width="50" height="120" class="selected"
-                                      stroke="black"
-                                      stroke-width="1"/>
-                                <rect id="pillar6" x="250" y="60" width="50" height="140" class="selected"
-                                      stroke="black"
-                                      stroke-width="1"/>
-                                <rect id="pillar7" x="300" y="0" width="50" height="200" fill="grey" stroke="black"
-                                      stroke-width="1"/>
-                                <rect id="pillar8" x="350" y="80" width="50" height="120" fill="grey" stroke="black"
-                                      stroke-width="1"/>
-                                <rect id="pillar9" x="400" y="60" width="50" height="140" fill="grey" stroke="black"
-                                      stroke-width="1"/>
-                                <rect id="pillar10" x="450" y="0" width="50" height="200" fill="grey" stroke="black"
-                                      stroke-width="1"/>
-                                <rect id="pillar11" x="500" y="80" width="50" height="120" fill="grey" stroke="black"
-                                      stroke-width="1"/>
-                                <rect id="pillar12" x="550" y="60" width="50" height="140" fill="grey" stroke="black"
-                                      stroke-width="1"/>
-
-                                <path class="path1" stroke-width="5" stroke="black" d="M0 200 l550 0"/>
-
-                            </svg>
-                        </g>
+                        </svg>
                     </g>
+                </g>
 
-                    <div id="datesBox">
-                        <label>01.01</label>
-                        <label class="labelMarginDate">01.05</label>
-                        <label class="labelMarginDate">01.09</label>
+                <div id="datesBox">
+                    <label>01.01</label>
+                    <label class="labelMarginDate">01.05</label>
+                    <label class="labelMarginDate">01.09</label>
 
-                        <label class="labelMarginDate">01.01</label>
-                        <label class="labelMarginDate">01.05</label>
-                        <label class="labelMarginDate">01.09</label>
-                    </div>
-
-
+                    <label class="labelMarginDate">01.01</label>
+                    <label class="labelMarginDate">01.05</label>
+                    <label class="labelMarginDate">01.09</label>
                 </div>
-            </td>
 
-        </tr>
-        <tr>
-            <td rowspan="2">
-                <div id="cantonBox">
-                    <ul id="cantonList">
-                        <li>
-                            <div class="lic, reset"><input type="button" value="Auswahl zurücksetzen"
-                                                           id="cantonResetButton"/></div>
-                        </li>
-                        <li>
-                            <div class="liC">
-                                <svg width="200" height="40" style="margin:0;">
-                                    <rect x="0" y="0" width="85%" height="100%" fill="lightblue" style="margin:0;"/>
-                                    <text x="20" y="25" style="margin:0;" fill="blue">Aargau</text>
-                                </svg>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="liC">
-                                <svg width="200" height="40" style="margin:0;">
-                                    <rect x="0" y="0" width="65%" height="100%" fill="lightblue" style="margin:0;"/>
-                                    <text x="20" y="25" style="margin:0;" fill="blue">Basel-Stadt</text>
-                                </svg>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="liC">
-                                <svg width="200" height="40" style="margin:0;">
-                                    <rect x="0" y="0" width="70%" height="100%" fill="lightblue" style="margin:0;"/>
-                                    <text x="20" y="25" style="margin:0;">Basel-Land</text>
-                                </svg>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="liC">
-                                <svg width="200" height="40" style="margin:0;">
-                                    <rect x="0" y="0" width="60%" height="40" fill="lightblue" style="margin:0;"/>
-                                    <text x="20" y="25" style="margin:0;">...</text>
-                                </svg>
-                            </div>
-                        </li>
-                    </ul>
+
+            </div>
+        </aside>
+
+
+
+        <aside class="flex-item" id="cantonAside">
+            <div id="cantonBox">
+                <ul id="cantonList">
+                    <li>
+                        <div class="lic, reset"><input type="button" value="Auswahl zurücksetzen"
+                                                       id="cantonResetButton"/></div>
+                    </li>
+                    <li>
+                        <div class="liC">
+                            <svg width="200" height="40" style="margin:0;">
+                                <rect x="0" y="0" width="85%" height="100%" fill="lightblue" style="margin:0;"/>
+                                <text x="20" y="25" style="margin:0;" fill="blue">Aargau</text>
+                            </svg>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="liC">
+                            <svg width="200" height="40" style="margin:0;">
+                                <rect x="0" y="0" width="65%" height="100%" fill="lightblue" style="margin:0;"/>
+                                <text x="20" y="25" style="margin:0;" fill="blue">Basel-Stadt</text>
+                            </svg>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="liC">
+                            <svg width="200" height="40" style="margin:0;">
+                                <rect x="0" y="0" width="70%" height="100%" fill="lightblue" style="margin:0;"/>
+                                <text x="20" y="25" style="margin:0;">Basel-Land</text>
+                            </svg>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="liC">
+                            <svg width="200" height="40" style="margin:0;">
+                                <rect x="0" y="0" width="60%" height="40" fill="lightblue" style="margin:0;"/>
+                                <text x="20" y="25" style="margin:0;">...</text>
+                            </svg>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </aside>
+        <aside class="flex-item" id="kpiAside">
+            <div id="kpiBox">
+                <label style="font-size: 16px">30.08 - 04.09.2020</label><br>
+                <label style="font-size: 20px">Auswahl: <br>AG, BS</label>
+
+                <div class="kpi-box-1">
+                    <label class="kpi-info">Tests - Positiv</label> <br>
+                    <label class="kpi-number">1300</label>
                 </div>
-            </td>
-
-            <td>
-                <div id="kpiBox">
-                    <label style="font-size: 16px">30.08 - 04.09.2020</label><br>
-                    <label style="font-size: 20px">Auswahl: <br>AG, BS</label>
-
-                    <div class="kpi-box-1">
-                        <label class="kpi-info">Tests - Positiv</label> <br>
-                        <label class="kpi-number">1300</label>
-                    </div>
-                    <div class="kpi-box-2 kpi-box-small">
-                        <label class="kpi-info">Todesfälle</label> <br>
-                        <label class="kpi-number">500</label>
-                    </div>
-                    <div class="kpi-box-3 kpi-box-small">
-                        <label class="kpi-info">Hospitalisierte</label> <br>
-                        <label class="kpi-number">100</label>
-                    </div>
-                    <div class="kpi-box-4 kpi-box-small">
-                        <label class="kpi-info">Quarantäne</label> <br>
-                        <label class="kpi-number">10000</label>
-                    </div>
-                    <div class="kpi-box-5 kpi-box-small">
-                        <label class="kpi-info">Getestet</label> <br>
-                        <label class="kpi-number">1300</label>
-                    </div>
-                    <div class="kpi-box-6 kpi-box-small">
-                        <label class="kpi-info">Getestet - Positiv</label> <br>
-                        <label class="kpi-number">100</label>
-                    </div>
-                    <div class="kpi-box-7 kpi-box-small">
-                        <label class="kpi-info">Künstlich beatmet</label> <br>
-                        <label class="kpi-number">200</label>
-                    </div>
-
+                <div class="kpi-box-2 kpi-box-small">
+                    <label class="kpi-info">Todesfälle</label> <br>
+                    <label class="kpi-number">500</label>
                 </div>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <div id="rawdataBox">
-                    <table id="rawDataTable" border="1">
-                        <tr>
-                            <th>
-                                Kanton
-                            </th>
-                            <th>
-                                Fokus (positiv getestet)
-                            </th>
-                            <th>
-                                Hospitalisiert
-                            </th>
-                            <th>
-                                künstlich Beatmet
-                            </th>
-                            <th>
-                                verstorben
-                            </th>
-                        </tr>
-                        <tr>
-                            <th>Aargau</th>
-                            <td>1500</td>
-                            <td>500</td>
-                            <td>150</td>
-                            <td>400</td>
-                        </tr>
-                        <tr>
-                            <th>Basel-Stadt</th>
-                            <td>1000</td>
-                            <td>500</td>
-                            <td>150</td>
-                            <td>400</td>
-                        </tr>
-                    </table>
+                <div class="kpi-box-3 kpi-box-small">
+                    <label class="kpi-info">Hospitalisierte</label> <br>
+                    <label class="kpi-number">100</label>
                 </div>
-            </td>
-        </tr>
-    </table>
+                <div class="kpi-box-4 kpi-box-small">
+                    <label class="kpi-info">Quarantäne</label> <br>
+                    <label class="kpi-number">10000</label>
+                </div>
+                <div class="kpi-box-5 kpi-box-small">
+                    <label class="kpi-info">Getestet</label> <br>
+                    <label class="kpi-number">1300</label>
+                </div>
+                <div class="kpi-box-6 kpi-box-small">
+                    <label class="kpi-info">Getestet - Positiv</label> <br>
+                    <label class="kpi-number">100</label>
+                </div>
+                <div class="kpi-box-7 kpi-box-small">
+                    <label class="kpi-info">Künstlich beatmet</label> <br>
+                    <label class="kpi-number">200</label>
+                </div>
+
+            </div>
+        </aside>
+
+
+        <div class="flex-item">
+            <div id="rawdataBox">
+                <table id="rawDataTable" border="1">
+                    <tr>
+                        <th>
+                            Kanton
+                        </th>
+                        <th>
+                            Fokus (positiv getestet)
+                        </th>
+                        <th>
+                            Hospitalisiert
+                        </th>
+                        <th>
+                            künstlich Beatmet
+                        </th>
+                        <th>
+                            verstorben
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>Aargau</th>
+                        <td>1500</td>
+                        <td>500</td>
+                        <td>150</td>
+                        <td>400</td>
+                    </tr>
+                    <tr>
+                        <th>Basel-Stadt</th>
+                        <td>1000</td>
+                        <td>500</td>
+                        <td>150</td>
+                        <td>400</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+    </div>
+
 
 </div>
 
