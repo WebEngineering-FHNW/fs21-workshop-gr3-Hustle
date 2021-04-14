@@ -6,6 +6,39 @@ export {HustleController, FokusView, TimeView, CantonsView, KPIView, DataTableVi
 
 const HustleController = () => {
 
+    const fokus = () => {
+        const selection = Attribute("text");
+        const sequence = Attribute("text");
+
+        const onAnyChange = (f) => {
+            sequence.getOps(VALUE).onChange(f);
+            selection.getOps(VALUE).onChange(f);
+        };
+
+        return{
+            setSelection:       selection.getOps(VALUE).setValue,
+            getSelection:       selection.getOps(VALUE).getValue,
+            setSequence:        sequence.getOps(VALUE).setValue,
+            getSequence:        sequence.getOps(VALUE).getValue,
+            onChange:           onAnyChange
+        }
+    };
+
+    const cantonSelection = () => {
+        const selection = Attribute([]);
+        const count = Attribute(0);
+
+        selection.getOps(VALUE).onChange( (f) => count.getOps(VALUE).set)
+
+        return{
+            setSelection:       selection.getOps(VALUE).setValue,
+            getSelection:       selection.getOps(VALUE).getValue,
+            getCount:           count.getOps(VALUE).getValue,
+            onChange:           selection.getOps(VALUE).onChange
+        }
+    };
+
+
     const info = () => {                               // facade
         const type = Attribute("text");
         const name = Attribute("");

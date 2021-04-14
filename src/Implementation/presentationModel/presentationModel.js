@@ -1,13 +1,11 @@
 
-import { Observable } from "../observable/observable.js";
+import { Observable, ObservableList } from "../observable/observable.js";
 import { id }         from "../church/church.js";
 
 export { Attribute,
-         VALID, VALUE, EDITABLE, LABEL }
+         VALUE, LABEL }
 
 const VALUE    = "value";
-const VALID    = "valid";
-const EDITABLE = "editable";
 const LABEL    = "label";
 
 const Attribute = value => {
@@ -35,3 +33,7 @@ const Attribute = value => {
 
     return { getObs, hasObs, setValidator, setConverter, setConvertedValue }
 };
+
+const AttributeList = values => {
+
+}
