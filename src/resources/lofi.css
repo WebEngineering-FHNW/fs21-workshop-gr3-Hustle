@@ -10,10 +10,12 @@ main {
                 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-#cantonResetButton{
-    background-color: #fccaca;
-    color: black;
+.cantonSelectButton{
+    background-color: #1687A7;
     font-size: 1em;
+    color: #F6F5F5;
+    /*stroke: #1687A7;
+    stroke-width: 2;*/
 }
 
 div#focusBox{
@@ -49,6 +51,7 @@ div.reset{
 div.liC{
     padding: 0em;
     max-height: 40px;
+    max-width: 211px;
     border-width: 1px;
     border-top-width: 0;
     border-style: solid;
