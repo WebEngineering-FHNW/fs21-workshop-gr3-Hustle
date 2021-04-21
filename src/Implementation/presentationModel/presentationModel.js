@@ -1,11 +1,13 @@
 
-import { Observable, ObservableList } from "../observable/observable.js";
+import { Observable } from "../observable/observable.js";
 import { id }         from "../church/church.js";
 
 export { Attribute,
-         VALUE, LABEL }
+    VALID, VALUE, EDITABLE, LABEL }
 
 const VALUE    = "value";
+const VALID    = "valid";
+const EDITABLE = "editable";
 const LABEL    = "label";
 
 const Attribute = value => {
@@ -21,7 +23,7 @@ const Attribute = value => {
 
     getObs(VALUE, value); // initialize the value at least
 
-    let   convert           = id ;
+    let   convert           = id;
     const setConverter      = converter => {
         convert = converter;
         setConvertedValue(value);
@@ -33,7 +35,3 @@ const Attribute = value => {
 
     return { getObs, hasObs, setValidator, setConverter, setConvertedValue }
 };
-
-const AttributeList = values => {
-
-}
