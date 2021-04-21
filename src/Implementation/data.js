@@ -1,4 +1,4 @@
-const cantonData = [
+const data = [
     {canton: "AG",
      date: "2021-1-1"
     },
@@ -11,7 +11,13 @@ const timeData = [
 
 ];
 
-const canton = [
+const cantonFokus = [
     "AG", 1200
 ];
 
+// Fokus optionen
+const focusOptions = [
+
+]
+
+// Kanton
