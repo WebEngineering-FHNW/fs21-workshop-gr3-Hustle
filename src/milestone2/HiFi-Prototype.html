@@ -4,6 +4,12 @@
     <meta charset="UTF-8">
     <title>Gruppe 3 - CoronaHustle</title>
     <link rel="stylesheet" href="../resources/hifi.css">
+
+    <!-- wRunner CSS -->
+    <link rel="stylesheet" href="../wrunner/wrunner-default-theme.css">
+    <!-- wRunner JS -->
+    <script src="../wrunner/wrunner-native.js"></script>
+
 </head>
 <body>
 <div id="content" width="600px" align="center">
@@ -75,6 +81,19 @@
                         </g>
                     </g>
 
+                    <div class="my-js-slider"></div>
+                    <script>
+                        //// WRunner Plugin for slider selector ////
+                        const setting = {
+                            roots: document.querySelector('.my-js-slider'),
+                            type: 'range',
+                            step: 1,
+                            limits: { minLimit: 1, maxLimit: 11049 },
+                            valueNoteDisplay : false,
+                        };
+                        const slider = wRunner(setting);
+                    </script>
+
                     <div id="datesBox">
                         <label>01.01</label>
                         <label class="labelMarginDate">01.05</label>
@@ -84,6 +103,9 @@
                         <label class="labelMarginDate">01.05</label>
                         <label class="labelMarginDate">01.09</label>
                     </div>
+
+
+
                 </div>
             </td>
 
@@ -249,11 +271,11 @@
 
 <script type="text/javascript">
 
-  const controller = HustleController();
+    /*    const controller = HustleController();
 
-  FokusView(controller, document.getElementById('focusBox'));
+        FokusView(controller, document.getElementById('focusBox'));*/
 
-  function toggleRectangleVis(id) {
+    function toggleRectangleVis(id) {
         let recElementById = document.getElementById(id);
         if (recElementById.style.visibility === "hidden") {
             recElementById.style.visibility = "visible"
