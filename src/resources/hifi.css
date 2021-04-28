@@ -1,41 +1,48 @@
 body {
-    margin-top:     2em;
-    font-family:    "Helvetica Neue", sans-serif;
-}
-main {
-    max-width:  80em;
-    margin:     auto;
-    padding:    1em;
-    box-shadow: 0 4px  8px 0 rgba(0, 0, 0, 0.2),
-                0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    margin-top: 2em;
+    font-family: "Helvetica Neue", sans-serif;
 }
 
-#cantonResetButton{
-    background-color: #fccaca;
-    color: black;
+main {
+    max-width: 80em;
+    margin: auto;
+    padding: 1em;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+    0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.cantonSelectButton{
+    background-color: #1687A7;
     font-size: 1em;
+    color: #F6F5F5;
+    /*stroke: #1687A7;
+    stroke-width: 2;*/
 }
 
 div#focusBox{
     padding: 1em;
     text-align: center;
+    width: 200px;
 }
 
 label.selected{
     color: blue;
 }
 
-ul#cantonList{
-    list-style:none;
-    padding-left:1em;
-    padding-right:1em;
-}
-li#cantonList{
-    list-style:none;
+ul#cantonList {
+    list-style: none;
+    padding-left: 1em;
+    padding-right: 1em;
 }
 
-div.cantonBox{
-    padding: 0;
+li#cantonList {
+    list-style: none;
+}
+
+div#cantonBox {
+    padding: 1em;
+    text-align: center;
+    width: 200px;
 }
 
 div.reset{
@@ -49,6 +56,7 @@ div.reset{
 div.liC{
     padding: 0em;
     max-height: 40px;
+    max-width: 211px;
     border-width: 1px;
     border-top-width: 0;
     border-style: solid;
@@ -56,6 +64,9 @@ div.liC{
 }
 #timeBox {
     align-content: center;
+    padding: 1em;
+    text-align: center;
+
 }
 
 #timeBox .selected {
@@ -80,6 +91,13 @@ div > #year2021 {
     margin-left: 100px;
 }
 
+#kpiBox {
+    align-content: center;
+    padding: 1em;
+    text-align: center;
+
+}
+
 .kpi-box-1 {
     /*border: 2px solid #548BDF;*/
     background-color: #C4C4C4;
@@ -90,11 +108,11 @@ div > #year2021 {
     display: table-cell;
 }
 
-div.rawdataBox{
+div.rawdataBox {
 
 }
 
-table#rawDataTable{
+table#rawDataTable {
     margin: 1em;
 }
 
@@ -118,4 +136,61 @@ table#rawDataTable{
 
 .kpi-number {
     font-size: 18px;
+}
+
+.flex-container {
+    /* We first create a flex layout context */
+    display: flex;
+    flex-flow: row wrap;
+
+    /* Then we define the flow direction
+       and if we allow the items to wrap
+     * Remember this is the same as:
+     * flex-direction: row;
+     * flex-wrap: wrap;
+     */
+
+    /*flex-direction: column;*/
+    /* Then we define how is distributed the remaining space */
+    /*justify-content: space-around;*/
+    padding: 0;
+    margin: 0;
+    list-style: none;
+
+}
+
+.flex-item {
+    background: tomato;
+    padding: 5px;
+    /*width: 200px;*/
+    /*height: 150px;*/
+    margin-top: 10px;
+    /*line-height: 150px;*/
+    color: white;
+    /*font-weight: bold;*/
+    font-size: 16px;
+    /*text-align: center;*/
+    flex-grow: 1
+}
+
+.break {
+    flex-basis: 100%;
+    width: 0;
+
+}
+
+#focusAside {
+    max-width: 250px;
+}
+
+#timeAside {
+    min-width: 900px;
+}
+
+#cantonAside {
+    max-width: 250px;
+}
+
+#kpiAside {
+    min-width: 900px;
 }
