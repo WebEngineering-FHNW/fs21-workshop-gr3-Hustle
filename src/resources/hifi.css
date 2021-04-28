@@ -1,0 +1,121 @@
+body {
+    margin-top:     2em;
+    font-family:    "Helvetica Neue", sans-serif;
+}
+main {
+    max-width:  80em;
+    margin:     auto;
+    padding:    1em;
+    box-shadow: 0 4px  8px 0 rgba(0, 0, 0, 0.2),
+                0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+#cantonResetButton{
+    background-color: #fccaca;
+    color: black;
+    font-size: 1em;
+}
+
+div#focusBox{
+    padding: 1em;
+    text-align: center;
+}
+
+label.selected{
+    color: blue;
+}
+
+ul#cantonList{
+    list-style:none;
+    padding-left:1em;
+    padding-right:1em;
+}
+li#cantonList{
+    list-style:none;
+}
+
+div.cantonBox{
+    padding: 0;
+}
+
+div.reset{
+    padding: 1em;
+    border-width: 0;
+    border-bottom-width: 1px;
+    border-style: solid;
+    border-color: black;
+}
+
+div.liC{
+    padding: 0em;
+    max-height: 40px;
+    border-width: 1px;
+    border-top-width: 0;
+    border-style: solid;
+    border-color: black;
+}
+#timeBox {
+    align-content: center;
+}
+
+#timeBox .selected {
+    fill: #548BDF
+}
+
+div > #year2021 {
+    margin-left: 380px;
+}
+
+#yearsBox {
+    font-size: 20px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+#datesBox {
+    font-size: 18px;
+}
+
+.labelMarginDate {
+    margin-left: 100px;
+}
+
+.kpi-box-1 {
+    /*border: 2px solid #548BDF;*/
+    background-color: #C4C4C4;
+    height: 70px;
+    width: 100px;
+    text-align: center;
+    vertical-align: middle;
+    display: table-cell;
+}
+
+div.rawdataBox{
+
+}
+
+table#rawDataTable{
+    margin: 1em;
+}
+
+.kpi-box-5 {
+
+}
+
+.kpi-box-small {
+    /*border: 2px solid #548BDF;*/
+    background-color: #C4C4C4;
+    height: 50px;
+    width: 70px;
+    text-align: center;
+    vertical-align: middle;
+    display: table-cell;
+}
+
+.kpi-info {
+    font-size: 14px;
+}
+
+.kpi-number {
+    font-size: 18px;
+}
