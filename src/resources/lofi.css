@@ -11,19 +11,21 @@ main {
     0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-#cantonResetButton {
-    background-color: #fccaca;
-    color: black;
+.cantonSelectButton{
+    background-color: #1687A7;
     font-size: 1em;
+    color: #F6F5F5;
+    /*stroke: #1687A7;
+    stroke-width: 2;*/
 }
 
-div#focusBox {
+div#focusBox{
     padding: 1em;
     text-align: center;
     width: 200px;
 }
 
-label.selected {
+label.selected{
     color: blue;
 }
 
@@ -43,7 +45,7 @@ div#cantonBox {
     width: 200px;
 }
 
-div.reset {
+div.reset{
     padding: 1em;
     border-width: 0;
     border-bottom-width: 1px;
@@ -51,15 +53,15 @@ div.reset {
     border-color: black;
 }
 
-div.liC {
+div.liC{
     padding: 0em;
     max-height: 40px;
+    max-width: 211px;
     border-width: 1px;
     border-top-width: 0;
     border-style: solid;
     border-color: black;
 }
-
 #timeBox {
     align-content: center;
     padding: 1em;
