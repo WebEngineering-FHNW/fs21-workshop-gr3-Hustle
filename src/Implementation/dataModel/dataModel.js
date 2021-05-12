@@ -122,11 +122,21 @@ const CsvReader = () => {
             if ( found ){
                 colSetting.forEach( el => found[el.c] = cbreak[el.n] )
             } else {
-                let entry = {};
+                let entry = prepEntry();
                 colSetting.forEach( el => entry[el.c] = cbreak[el.n] )
                 aggregated.push(entry);
             }
         });
+    }
+
+    function prepEntry(){
+        let entry = {}
+        files.forEach( el => {
+            el.columns.forEach( e => {
+                entry[e.c] = "NA";
+            })
+        })
+        return entry;
     }
 
     function readCsv (input, onFinish){
