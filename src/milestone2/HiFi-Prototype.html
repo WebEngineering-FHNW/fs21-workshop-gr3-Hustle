@@ -18,18 +18,24 @@
             <td>
                 <div id="focusBox">
                     Fokus:
-                    <select>
-                        <option>positiv getestet</option>
-                    </select>
+                    <label>
+                        <select>
+                            <option>Positiv getestet</option>
+                            <option>Todesfälle</option>
+                            <option>Hospitalisierte</option>
+                            <option>Quarantäne</option>
+                            <option>Getestet</option>
+                        </select>
+                    </label>
 
-                    </br>
-                    </br>
+                    <br>
+                    <br>
                     <div style="">
-                        Facettierte Suche / Reihenfolge: </br>
+                        Facettierte Suche / Reihenfolge: <br>
                         1. Zeit
-                        </br>
+                        <br>
                         <input type="button" value="vertauschen" text="vertauschen"/>
-                        </br>
+                        <br>
                         2. Kanton
                     </div>
                 </div>
@@ -88,8 +94,8 @@
                             roots: document.querySelector('.my-js-slider'),
                             type: 'range',
                             step: 1,
-                            limits: { minLimit: 1, maxLimit: 11049 },
-                            valueNoteDisplay : false,
+                            limits: {minLimit: 1, maxLimit: 11049},
+                            valueNoteDisplay: false,
                         };
                         const slider = wRunner(setting);
                     </script>
@@ -103,7 +109,6 @@
                         <label class="labelMarginDate">01.05</label>
                         <label class="labelMarginDate">01.09</label>
                     </div>
-
 
 
                 </div>
@@ -131,44 +136,44 @@
                         <li>
                             <div class="liC">
                                 <svg id="cantonBox1"
-                                     onclick="toggleRectangleVis('cantonBoxSelection1')"
-                                     width="211" height="40" style="margin:0;">
+                                     onclick="toggleRectangleVis('cantonBoxSelection1', 'cantonName1')"
+                                     width="165" height="40" style="margin:0;">
                                     <rect x="0" y="0" width="100%" height="100%" fill="#D3E0EA" style="margin:0;"/>
                                     <!-- id="cantonBox1" onclick="cantonBox1.style.stroke='#CA5375';" -->
                                     <rect id="cantonBoxSelection1" visibility="hidden" fill-opacity="0" x="0" y="0"
                                           width="100%" height="100%"
-                                          stroke='#CA5375' stroke-width="5" style="margin:0;"/>
+                                          stroke='#CA5375' stroke-width="5" style="margin:0; visibility:hidden;"/>
 
                                     <text x="20" y="25" style="margin:0;" fill="blue">700</text>
-                                    <text x="80" y="25" style="margin:0;" fill="blue">Aargau</text>
+                                    <text id="cantonName1" x="80" y="25" style="margin:0;" fill="blue">Aargau</text>
                                 </svg>
                             </div>
                         </li>
                         <li>
                             <div class="liC">
                                 <svg id="cantonBox1"
-                                     onclick="toggleRectangleVis('cantonBoxSelection2')"
-                                     width="211" height="40" style="margin:0;">
+                                     onclick="toggleRectangleVis('cantonBoxSelection2', 'cantonName2')"
+                                     width="165" height="40" style="margin:0;">
                                     <rect x="0" y="0" width="100%" height="100%" fill="#D3E0EA" style="margin:0;"/>
                                     <rect id="cantonBoxSelection2" visibility="hidden" fill-opacity="0" x="0" y="0"
                                           width="100%" height="100%"
-                                          stroke='#CA5375' stroke-width="5" style="margin:0;"/>
+                                          stroke='#CA5375' stroke-width="5" style="margin:0; visibility:hidden;"/>
                                     <text x="20" y="25" style="margin:0;" fill="blue">600</text>
-                                    <text x="80" y="25" style="margin:0;" fill="blue">Basel-Stadt</text>
+                                    <text id="cantonName2" x="80" y="25" style="margin:0;" fill="blue">Basel-St.</text>
                                 </svg>
                             </div>
                         </li>
                         <li>
                             <div class="liC">
                                 <svg id="cantonBox1"
-                                     onclick="toggleRectangleVis('cantonBoxSelection3')"
-                                     width="211" height="40" style="margin:0;">
+                                     onclick="toggleRectangleVis('cantonBoxSelection3', 'cantonName3')"
+                                     width="165" height="40" style="margin:0;">
                                     <rect x="0" y="0" width="100%" height="100%" fill="#D3E0EA" style="margin:0;"/>
                                     <rect id="cantonBoxSelection3" visibility="hidden" fill-opacity="0" x="0" y="0"
                                           width="100%" height="100%"
-                                          stroke='#CA5375' stroke-width="5" style="margin:0;"/>
+                                          stroke='#CA5375' stroke-width="5" style="margin:0; visibility:hidden;"/>
                                     <text x="20" y="25" style="margin:0;" fill="blue">500</text>
-                                    <text x="80" y="25" style="margin:0;" fill="blue">Zürich</text>
+                                    <text id="cantonName3" x="80" y="25" style="margin:0;" fill="blue">Zürich</text>
                                 </svg>
                             </div>
                         </li>
@@ -176,7 +181,7 @@
                             <div class="liC">
                                 <svg id="cantonBox1"
                                      onclick="toggleRectangleVis('cantonBoxSelection4')"
-                                     width="211" height="40" style="margin:0;">
+                                     width="165" height="40" style="margin:0;">
                                     <rect x="0" y="0" width="100%" height="100%" fill="#D3E0EA" style="margin:0;"/>
                                     <rect id="cantonBoxSelection4" visibility="hidden" fill-opacity="0" x="0" y="0"
                                           width="100%" height="100%"
@@ -192,7 +197,11 @@
             <td>
                 <div id="kpiBox">
                     <label style="font-size: 16px">30.08 - 04.09.2020</label><br>
-                    <label style="font-size: 20px">Auswahl: <br>AG, BS</label>
+                    <label id="cSelectionLabel" style="font-size: 20px">Auswahl: <br>
+                        Alle Kantone
+                    </label>
+
+                    <br><br>
 
                     <div class="kpi-box-1">
                         <label class="kpi-info">Tests - Positiv</label> <br>
@@ -215,10 +224,6 @@
                         <label class="kpi-number">1300</label>
                     </div>
                     <div class="kpi-box-6 kpi-box-small">
-                        <label class="kpi-info">Getestet - Positiv</label> <br>
-                        <label class="kpi-number">100</label>
-                    </div>
-                    <div class="kpi-box-7 kpi-box-small">
                         <label class="kpi-info">Künstlich beatmet</label> <br>
                         <label class="kpi-number">200</label>
                     </div>
@@ -235,7 +240,7 @@
                                 Kanton
                             </th>
                             <th>
-                                Fokus (positiv getestet)
+                                Fokus (Positiv getestet)
                             </th>
                             <th>
                                 Hospitalisiert
@@ -274,19 +279,27 @@
     /*    const controller = HustleController();
 
         FokusView(controller, document.getElementById('focusBox'));*/
+    let cantonNamesArray = [];
 
-    function toggleRectangleVis(id) {
+    function toggleRectangleVis(id, cantonNameid) {
         let recElementById = document.getElementById(id);
+
         if (recElementById.style.visibility === "hidden") {
             recElementById.style.visibility = "visible"
+            cantonNamesArray.push(document.getElementById(cantonNameid).textContent);
+            document.getElementById("cSelectionLabel").textContent = cantonNamesArray.join(", ")
         } else {
             recElementById.style.visibility = "hidden"
+            cantonNamesArray.pop();
+            document.getElementById("cSelectionLabel").textContent = cantonNamesArray.join(", ")
         }
     }
 
     function hideRectangle(id) {
         let recElementById = document.getElementById(id);
-        recElementById.style.visibility = "hidden"
+        recElementById.style.visibility = "hidden";
+        document.getElementById("cSelectionLabel").textContent = "Alle Kantone";
+        cantonNamesArray = [];
     }
 </script>
 
