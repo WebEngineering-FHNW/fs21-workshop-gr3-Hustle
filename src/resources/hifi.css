@@ -54,9 +54,9 @@ div.reset{
 }
 
 div.liC{
-    padding: 0em;
+    padding: 0;
     max-height: 40px;
-    max-width: 211px;
+    /*max-width: 211px;*/
     border-width: 1px;
     border-top-width: 0;
     border-style: solid;
