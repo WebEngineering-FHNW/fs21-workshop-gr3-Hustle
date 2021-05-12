@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>RonaData</title>
+</head>
+<body>
+<script type="module" src="data.js"></script>
+<input type="file" id="fileSelection" accept="text/csv" multiple >
+<div id="box">
+
+</div>
+<script type="module">
+    import {dataContr} from "./data.js";
+
+    const c = dataContr();
+    const input = document.getElementById("fileSelection")
+    input.addEventListener('change', () => c.readData(input.files))
+
+</script>
+
+</body>
+</html>

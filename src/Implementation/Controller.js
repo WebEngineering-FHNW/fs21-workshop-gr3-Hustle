@@ -6,30 +6,29 @@ export {HustleController, FokusView, TimeView, CantonsView, KPIView, DataTableVi
 
 const HustleController = () => {
 
-    const data = () => {
-
-    }
+    const data = () => {}
 
     const fokus = () => {
         const selection = Attribute("text");
         const sequence = Attribute("text");
 
-        const onAnyChange = (f) => {
-            sequence.getOps(VALUE).onChange(f);
-            selection.getOps(VALUE).onChange(f);
-        };
+        const onAnyChange = (f) => {sequence.getOps(VALUE).onChange(f);selection.getOps(VALUE).onChange(f);};
+        const onSequenceChange = (f) => sequence.getOps(VALUE).onChange(f);
+        const onSelectionChange = (f) => selection.getOps(VALUE).onChange(f);
 
         return{
             setSelection:       selection.getOps(VALUE).setValue,
             getSelection:       selection.getOps(VALUE).getValue,
             setSequence:        sequence.getOps(VALUE).setValue,
             getSequence:        sequence.getOps(VALUE).getValue,
-            onChange:           onAnyChange
+            onChange:           onAnyChange,
+            onSequenceChange:   onSequenceChange,
+            onSelectionChange:  onSelectionChange,
         }
     };
 
     const cantonSelection = () => {
-        const selection = ObservableList();
+        const selection = ObservableList(); //selected Cantons
         const count = Attribute(0);
 
         selection.getOps(VALUE).onChange( (f) => count.getOps(VALUE).set)
@@ -57,18 +56,9 @@ const HustleController = () => {
         }
     };
 
-
     const scheduler = Scheduler();
 
     return {
-        // numberOfTodos:      todoModel.count,
-        // numberOfopenTasks:  () => todoModel.countIf( todo => ! todo.getDone() ),
-        // addTodo:            addTodo,
-        // addFortuneTodo:     addFortuneTodo,
-        // removeTodo:         todoModel.del,
-        // onTodoAdd:          todoModel.onAdd,
-        // onTodoRemove:       todoModel.onDel,
-        // removeTodoRemoveListener: todoModel.removeDeleteListener, // only for the test case, not used below
     }
 };
 
