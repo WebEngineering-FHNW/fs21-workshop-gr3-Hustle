@@ -5,14 +5,14 @@ export { CsvReader }
 const CsvReader = () => {
 
     const files = [{
-        name:"COVID19Cases_geoRegion.csv",
-        columns: [
-            { c:"geoRegion", n:0 },
-            { c:"datum", n:1 },
-            { c:"Cases", n:2 },
-            { c:"CasesSumTotal", n:3 }
-        ]
-    },
+            name:"COVID19Cases_geoRegion.csv",
+            columns: [
+                { c:"geoRegion", n:0 },
+                { c:"datum", n:1 },
+                { c:"Cases", n:2 },
+                { c:"CasesSumTotal", n:3 }
+            ]
+        },
         {
             name:"COVID19Death_geoRegion.csv",
             columns: [

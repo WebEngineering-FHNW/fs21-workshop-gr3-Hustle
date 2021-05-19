@@ -14,7 +14,7 @@ const dataContr = () => {
         var fileBuffer=[];
 
         // append the file list to an array
-        Array.prototype.push.apply( fileBuffer, fileBlobs ); // <-- here
+        Array.prototype.push.apply( fileBuffer, fileBlobs );
 
         CsvReader().aggregateCsv(fileBuffer);
 
