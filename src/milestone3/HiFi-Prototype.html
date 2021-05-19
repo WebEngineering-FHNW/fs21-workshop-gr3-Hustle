@@ -11,6 +11,7 @@
     <script src="../wrunner/wrunner-native.js"></script>
     <script src="CantonSelectionView.js"></script>
     <script src="FacetedSearchFilter.js"></script>
+    <script src="TimelineDateSelector.js"></script>
 
 </head>
 <body>
@@ -19,9 +20,9 @@
         <tr>
             <td>
                 <div id="focusBox">
-                    Fokus:
+                    <label class="font-heading">Fokus:</label>
                     <label>
-                        <select>
+                        <select class="font-heading">
                             <option>Positiv getestet</option>
                             <option>Todesfälle</option>
                             <option>Hospitalisierte</option>
@@ -32,19 +33,23 @@
 
                     <br>
                     <br>
-                    <div style="">
-                        Facettierte Suche / Reihenfolge: <br>
-                        <label id="labelZeit">1. Zeit</label>
+
+                       <div class="font-regularText"> Wählen Sie aus, ob zuerst nach Zeit oder Kanton gefiltert werden soll.</div>
+
                         <br>
-                        <input type="button" value="vertauschen" text="vertauschen"/>
+
+
+                        <label class="font-heading" id="LabelFilterFirst">1. Zeit</label>
                         <br>
-                        <label id="labelKanton">2. Kanton</label>
-                    </div>
+                        <label class="font-heading" id="LabelFilterSecond">2. Kanton</label>
+                        <br>
+                        <input id="switchPriorityButton" onclick="switchFilters()" src="../resources/arrows.png" type="image" value="" alt=""/>
+
                 </div>
             </td>
 
             <td>
-                <div id="timeBox">
+                <div id="timeBox" class="font-heading">
 
                     <div id="yearsBox">
                         <label id="year2020">2020</label>
@@ -54,9 +59,9 @@
 
                     <g transform="translate(0,400)">
                         <g transform="scale(1,-1)">
-                            <svg viewBox="0 0 870 200">
+                            <svg viewBox="0 0 870 200" id="BarChartBox" onload="generateBarGraphs()">
 
-                                <rect id="pillar1" x="0" y="0" width="50" height="200" fill="grey" stroke="black"
+                                <!--<rect id="pillar1" x="0" y="0" width="50" height="200" fill="grey" stroke="black"
                                       stroke-width="1"/>
                                 <rect id="pillar2" x="50" y="80" width="50" height="120" fill="grey" stroke="black"
                                       stroke-width="1"/>
@@ -81,9 +86,9 @@
                                 <rect id="pillar11" x="500" y="80" width="50" height="120" fill="grey" stroke="black"
                                       stroke-width="1"/>
                                 <rect id="pillar12" x="550" y="60" width="50" height="140" fill="grey" stroke="black"
-                                      stroke-width="1"/>
+                                      stroke-width="1"/>-->
 
-                                <path class="path1" stroke-width="5" stroke="black" d="M0 200 l550 0"/>
+                                <path class="path1 stroke-black" stroke-width="5"  d="M0 200 l857 0"/>
 
                             </svg>
                         </g>
@@ -126,15 +131,16 @@
                                 <input onclick="alert('TBD')"
                                        type="button"
                                        value="Sortierung: asc /desc"
-                                       class="cantonSelectButton"/>
+                                       class="cantonSelectButton font-regularText"/>
                             </div>
                             <div class="lic, reset">
                                 <input onclick="hideRectangle('cantonBoxSelection1')"
                                        type="button"
                                        value="Auswahl zurücksetzen"
-                                       class="cantonSelectButton"/>
+                                       class="cantonSelectButton font-regularText"/>
                             </div>
                         </li>
+                        <div class="font-heading">
                         <li>
                             <div class="liC">
                                 <svg id="cantonBox1"
@@ -192,6 +198,7 @@
                                 </svg>
                             </div>
                         </li>
+                        </div>
                     </ul>
                 </div>
             </td>
@@ -235,7 +242,7 @@
         </tr>
         <tr>
             <td>
-                <div id="rawdataBox">
+                <div id="rawdatafBox">
                     <table id="rawDataTable" border="1">
                         <tr>
                             <th>
