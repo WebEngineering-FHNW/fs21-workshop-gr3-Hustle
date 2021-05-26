@@ -36,7 +36,8 @@ const HustleController = () => {
         const onSelectionChange = (f) => selection.getObs(VALUE).onChange(f);
 
         //debug
-        if (DEBUG) onAnyChange( newVal => console.log(newVal) );
+        if (DEBUG) onSequenceChange( newVal => console.log(newVal) );
+        if (DEBUG) onSelectionChange( newVal => console.log(newVal) );
 
         return{
             setSelection:       selection.getObs(VALUE).setValue,
@@ -93,12 +94,18 @@ const FokusView = (hustleController, fokusController, rootElement) => {
         let focusOptions = "";
         hustleController.getFokusList().forEach( el => focusOptions += '<option value="' + el.value + '">' + el.name + '</option>')
 
-        let selectElement = document.getElementById("focusSelect");
+        let selectElement = document.getElementById("focusSelection");
         selectElement.innerHTML = focusOptions;
         selectElement.onchange = _ => fokusController.setSelection(selectElement.value);
 
-        let sequenceElement = document.getElementById("firstSequenceElement");
-
+        let sequenceElement = document.getElementById("LabelFilterFirst")
+        let seq = ""
+        if (sequenceElement.innerText == "1. Zeit"){
+            seq = "time";
+        } else {
+            seq = "canton";
+        }
+        hustleController.getFokus().setSequence(seq);
 
         // rootElement.innerHTML = `
         //   Fokus:
@@ -116,22 +123,57 @@ const FokusView = (hustleController, fokusController, rootElement) => {
         //     2. Kanton
         //   </div>`;
     }
+
+    const switchFilters = () => {
+        const x = document.getElementById("LabelFilterFirst");
+        const y = document.getElementById("LabelFilterSecond");
+
+        if (x.innerHTML === "1. Zeit") {
+            hustleController.getFokus().setSequence("canton");
+            x.innerHTML = "1. Kanton";
+            y.innerHTML = "2. Zeit";
+        } else {
+            hustleController.getFokus().setSequence("time");
+            x.innerHTML = "1. Zeit";
+            y.innerHTML = "2. Kanton";
+        }
+    }
     // binding what changes can Occure?
 
     return {
-        render: id(render)
+        render: id(render),
+        switchFilters:  switchFilters
     }
 };
 
 const TimeView = (hustleController, rootElement) => {
 
-    const render = () => // do the stuff that needs to be done
-        numberOfTasksElement.innerText = "" + todoController.numberOfTodos();
+    const render = () => {
+        let selData = allData.filter( el => {
+            return el.geoRegion == "AG";
+        })
 
+        let d = [];
+
+        console.log(selData);
+
+        for (let i = 0; i < 170; i++) {
+            const x = document.getElementById("BarChartBox");
+            const random = Math.random();
+            const xValue = i * 5;
+            x.innerHTML += '<rect fill="lightblue" id="pillar' + i + '" x=' + xValue + ' y=' + (198 - 200 * random) + '' +
+                ' width="5" height="' + 200 * random + '"  ' +
+                'stroke="black" stroke-width="1"/>'
+        }
+    }
     // binding what changes can Occure?
 
-    todoController.onTodoAdd(render);
-    todoController.onTodoRemove(render);
+    hustleController.getFokus().onSelectionChange(render);
+    hustleController.getFokus().onSequenceChange(render);
+
+    return {
+        render: render
+    }
 };
 
 const CantonsView = (hustleController, rootElement) => {

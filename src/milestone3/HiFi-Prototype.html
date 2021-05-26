@@ -22,7 +22,7 @@
                 <div id="focusBox">
                     <label class="font-heading">Fokus:</label>
                     <label>
-                        <select class="font-heading">
+                        <select class="font-heading" id="focusSelection">
                             <option>Positiv getestet</option>
                             <option>Todesfälle</option>
                             <option>Hospitalisierte</option>
@@ -36,16 +36,13 @@
                        <div class="font-regularText"> Wählen Sie aus, ob zuerst nach Zeit oder Kanton gefiltert werden soll.</div>
 
                         <br>
-
-
                         <label class="font-heading" id="LabelFilterFirst">1. Zeit</label>
                         <br>
                         <label class="font-heading" id="LabelFilterSecond">2. Kanton</label>
                         <br>
-                        <input id="switchPriorityButton" onclick="switchFilters()" src="../resources/arrows.png" type="image" value="" alt=""/>
+                        <input id="switchPriorityButton" src="../resources/arrows.png" type="image" value="" alt=""/>
 
                 </div>
-            </td>
 
             <td>
                 <div id="timeBox" class="font-heading">
@@ -281,6 +278,25 @@
     </table>
 
 </div>
+
+<script type="module">
+    import {HustleController, FokusView, TimeView} from "../Implementation/Controller.js";
+
+
+    //Controllers Initialisieren:
+    const controller = HustleController();
+    const focusContr = controller.getFokus();
+
+    //FokusView erstellen:
+    const fokusView = FokusView(controller, focusContr, document.getElementById('focusBox'));
+    const timeView = TimeView(controller, document.getElementById("timeBox"));
+
+    //rendern:
+    fokusView.render();
+    timeView.render();
+
+    document.getElementById("switchPriorityButton").onclick = () => fokusView.switchFilters();
+</script>
 
 </body>
 </html>
