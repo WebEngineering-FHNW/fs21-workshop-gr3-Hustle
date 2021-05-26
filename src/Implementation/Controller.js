@@ -156,9 +156,9 @@ const TimeView = (hustleController, rootElement) => {
         let d = [];
 
         console.log(selData);
-
+        const x = document.getElementById("BarChartBox");
+        x.innerHTML = "";
         for (let i = 0; i < 170; i++) {
-            const x = document.getElementById("BarChartBox");
             const random = Math.random();
             const xValue = i * 5;
             x.innerHTML += '<rect fill="lightblue" id="pillar' + i + '" x=' + xValue + ' y=' + (198 - 200 * random) + '' +
