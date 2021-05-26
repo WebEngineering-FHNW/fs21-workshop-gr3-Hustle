@@ -2,14 +2,13 @@ import { id }                   from "./church/church.js";
 import { ObservableList }       from "./observable/observable.js";
 import { Attribute, VALUE }     from "./presentationModel/presentationModel.js";
 import { Scheduler }            from "./dataflow/dataflow.js";
+import { allData }              from "../resources/RonaData/aggregated.js"
 
 export {HustleController, FokusView, TimeView, CantonsView, KPIView, DataTableView}
 
 const DEBUG = true;
 
 const HustleController = () => {
-
-    const data = () => {}
 
     const focusList = [
         {name:"Faelle", value:"Cases"},
@@ -37,8 +36,7 @@ const HustleController = () => {
         const onSelectionChange = (f) => selection.getObs(VALUE).onChange(f);
 
         //debug
-        if (DEBUG) onSelectionChange( newVal => console.log(newVal) );
-        if (DEBUG) onSequenceChange( newVal => console.log(newVal) );
+        if (DEBUG) onAnyChange( newVal => console.log(newVal) );
 
         return{
             setSelection:       selection.getObs(VALUE).setValue,
