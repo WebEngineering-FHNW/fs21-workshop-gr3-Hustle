@@ -11,7 +11,7 @@ main {
     0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-.cantonSelectButton{
+.cantonSelectButton {
     background-color: #1687A7;
     font-size: 1em;
     color: #F6F5F5;
@@ -19,13 +19,13 @@ main {
     stroke-width: 2;*/
 }
 
-div#focusBox{
+div#focusBox {
     padding: 1em;
     text-align: center;
     width: 200px;
 }
 
-label.selected{
+label.selected {
     color: blue;
 }
 
@@ -45,7 +45,7 @@ div#cantonBox {
     width: 200px;
 }
 
-div.reset{
+div.reset {
     padding: 1em;
     border-width: 0;
     border-bottom-width: 1px;
@@ -53,7 +53,7 @@ div.reset{
     border-color: black;
 }
 
-div.liC{
+div.liC {
     padding: 0;
     max-height: 40px;
     /*max-width: 211px;*/
@@ -62,6 +62,7 @@ div.liC{
     border-style: solid;
     border-color: black;
 }
+
 #timeBox {
     align-content: center;
     padding: 1em;
@@ -70,7 +71,7 @@ div.liC{
 }
 
 #timeBox .selected {
-    fill: #548BDF
+    fill: #1687A7
 }
 
 div > #year2021 {
@@ -78,13 +79,8 @@ div > #year2021 {
 }
 
 #yearsBox {
-    font-size: 20px;
     margin-bottom: 10px;
     margin-top: 10px;
-}
-
-#datesBox {
-    font-size: 18px;
 }
 
 .labelMarginDate {
@@ -194,3 +190,97 @@ table#rawDataTable {
 #kpiAside {
     min-width: 900px;
 }
+
+/* Arrow Button */
+#switchPriorityButton {
+    /*  position: absolute; */
+    width: 50px;
+    height: 64px;
+    left: 471px;
+    top: 99px;
+
+    background: #276678;
+    border: 2px solid #1687A7;
+    box-sizing: border-box;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 5px;
+}
+
+/* BG Arrows */
+
+/* Arrow 1 */
+#arrow1 {
+    /*  position: absolute; */
+    width: 63px;
+    height: 17px;
+    left: 474px;
+    top: 167px;
+
+    border: 3px solid #F6F5F5;
+    box-sizing: border-box;
+    transform: matrix(0.02, -1, 1, 0.02, 0, 0);
+}
+
+/* Arrow 2 */
+#arrow2 {
+    /*  position: absolute; */
+    width: 63px;
+    height: 17px;
+    left: 528px;
+    top: 104px;
+
+    border: 3px solid #F6F5F5;
+    box-sizing: border-box;
+    transform: matrix(-0.02, 1, -1, -0.02, 0, 0);
+}
+
+/* fonts */
+.font-regularText {
+    font-size: 14px;
+    font-family: Roboto, sans-serif;
+    font-weight: normal;
+}
+
+.font-heading {
+    font-size: 16px;
+    font-family: Roboto, sans-serif;
+    font-weight: bold;
+}
+
+/* colors */
+.stroke-black {
+    stroke: #393E46;
+}
+
+.black-font {
+    color: #393E46;
+}
+
+.white-bg {
+    color: #F6F5F5;
+}
+
+.white-font {
+    color: #F5F5F5;
+}
+
+.lightblue {
+    color: #D3E0EA
+}
+
+.darkblue {
+    color: #1687A7
+}
+
+.greenblue {
+    color: #276678;
+}
+
+.red {
+    color: #CA5375;
+}
+
+
+
+
+
