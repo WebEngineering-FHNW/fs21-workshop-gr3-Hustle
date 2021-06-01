@@ -88,7 +88,7 @@ const HustleController = () => {
 };
 
 
-const FokusView = (hustleController, fokusController, rootElement) => {
+const FokusView = (hustleController, rootElement) => {
 
     const render = () => {
         let focusOptions = "";
