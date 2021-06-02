@@ -26,10 +26,41 @@ const HustleController = () => {
         {name:"Impfdosen", value:"VaccAdministred"}
     ];
 
+    const cantons = [
+        {name:"Aargau", value:"AG"},
+        {name:"Appenzell A.r.", value:"AR"},
+        {name:"Appenzell I.r.", value:"AI"},
+        {name:"Basel-Landschaft", value:"BL"},
+        {name:"Basel-Stadt", value:"BS"},
+        {name:"Bern", value:"BE"},
+        {name:"Freiburg", value:"FR"},
+        {name:"Genf", value:"GE"},
+        {name:"Glarus", value:"GL"},
+        {name:"Graubünden", value:"GR"},
+        {name:"Jura", value:"JU"},
+        {name:"Luzern", value:"LU"},
+        {name:"Neuenburg", value:"NE"},
+        {name:"Nidwalden", value:"NW"},
+        {name:"Obwalden", value:"OW"},
+        {name:"St. Gallen", value:"SG"},
+        {name:"Schaffhausen", value:"SH"},
+        {name:"Schwyz", value:"SZ"},
+        {name:"Solothurn", value:"SO"},
+        {name:"Tessin", value:"TI"},
+        {name:"Thurgau", value:"TG"},
+        {name:"Uri", value:"UR"},
+        {name:"Waadt", value:"VD"},
+        {name:"Wallis", value:"VS"},
+        {name:"Zürich", value:"ZH"},
+        {name:"Zug", value:"ZG"}
+    ];
+
+    const timeLimiters = { start: Date.parse("2020-03-01"), end: Date.parse("2021-02-28")};
+
     const fokus = () => {
 
-        const selection = Attribute("text");
-        const sequence = Attribute("text");
+        const selection = Attribute("Cases");
+        const sequence = Attribute("time");
 
         const onAnyChange = (f) => {sequence.getObs(VALUE).onChange(f);selection.getObs(VALUE).onChange(f);};
         const onSequenceChange = (f) => sequence.getObs(VALUE).onChange(f);
@@ -55,7 +86,7 @@ const HustleController = () => {
         const selection = ObservableList(list); //selected Cantons
 
         return{
-            getSelection:       list,
+            getSelection:       _ => {return list},
             addSel:             selection.add,
             removeSel:          selection.del,
             getCount:           selection.count(),
@@ -73,7 +104,8 @@ const HustleController = () => {
             getStart:           start.getObs(VALUE).getValue,
             setEnd:             end.getObs(VALUE).getValue,
             getEnd:             end.getObs(VALUE).setValue,
-            onStartChange:      selection.getObs(VALUE).onChange
+            onStartChange:      start.getObs(VALUE).onChange,
+            onEndChange:        end.getObs(VALUE).onChange
         }
     };
 
@@ -83,29 +115,34 @@ const HustleController = () => {
         getFokusList:           _ => {return focusList},
         getFokus:               fokus,
         getCantonSelection:     cantonSelection,
-        getTimeSelection:       timeSelection
+        getTimeSelection:       timeSelection,
+        getTimeLimiters:        _ => {return timeLimiters}
     }
 };
 
 
-const FokusView = (hustleController, rootElement) => {
+const FokusView = (hustleController, fokus, rootElement) => {
 
     const render = () => {
+        console.log("FokusView: ");
         let focusOptions = "";
         hustleController.getFokusList().forEach( el => focusOptions += '<option value="' + el.value + '">' + el.name + '</option>')
 
         let selectElement = document.getElementById("focusSelection");
         selectElement.innerHTML = focusOptions;
-        selectElement.onchange = _ => fokusController.setSelection(selectElement.value);
+        selectElement.onchange = _ => fokus.setSelection(selectElement.value);
 
         let sequenceElement = document.getElementById("LabelFilterFirst")
-        let seq = ""
+        let seq = "";
         if (sequenceElement.innerText == "1. Zeit"){
             seq = "time";
         } else {
             seq = "canton";
         }
-        hustleController.getFokus().setSequence(seq);
+
+        if (fokus.getSequence() === seq) {
+            fokus.setSequence(seq);
+        }
 
         // rootElement.innerHTML = `
         //   Fokus:
@@ -129,11 +166,11 @@ const FokusView = (hustleController, rootElement) => {
         const y = document.getElementById("LabelFilterSecond");
 
         if (x.innerHTML === "1. Zeit") {
-            hustleController.getFokus().setSequence("canton");
+            fokus.setSequence("canton");
             x.innerHTML = "1. Kanton";
             y.innerHTML = "2. Zeit";
         } else {
-            hustleController.getFokus().setSequence("time");
+            fokus.setSequence("time");
             x.innerHTML = "1. Zeit";
             y.innerHTML = "2. Kanton";
         }
@@ -146,45 +183,90 @@ const FokusView = (hustleController, rootElement) => {
     }
 };
 
-const TimeView = (hustleController, rootElement) => {
-
+const TimeView = (hustleController, focus, canton, time, rootElement) => {
+    let selData = [];
+    let firstTimeSel = [];
     const render = () => {
-        let selData = allData.filter( el => {
-            return el.geoRegion == "AG";
-        })
+        console.log("TimeView: ");
+        let tmpArray = [];
+        let cantonSelection = canton.getSelection();
+        let limiters = hustleController.getTimeLimiters();
 
-        let d = [];
+        if (firstTimeSel.length === 0) {
+            firstTimeSel = allData.filter(el => {
+                let d = Date.parse(el.datum);
+                return (limiters.start <= d && d <= limiters.end);
+            });
+        }
 
-        console.log(selData);
+        if (focus.getSequence() === "time" || cantonSelection.length === 0) {
+            selData = firstTimeSel.filter(el => {
+                return el.geoRegion == "CH";
+            })
+        } else {
+            selData = firstTimeSel.filter(el => {
+                return cantonSelection.includes( el.geoRegion );
+            })
+        }
+
+        selData.forEach( el => {
+            let d = el.datum;
+            let value = el[focus.getSelection()];
+            // Fokus Auswahl bereinigen
+            if (value === "NA"){
+                value = 0;
+            } else {
+                value = parseFloat(value);
+            }
+
+            // Pro Datum zusammenzählen
+            let tmpEntry = tmpArray.find(el => {return el.datum === d});
+            if (tmpEntry) {
+                tmpEntry.value += value;
+            } else {
+                tmpArray.push({datum: d,value: value});
+            }
+        });
+
+        let highestValue = 0;
+        tmpArray.forEach( el => {
+            if (el.value > highestValue ) highestValue = el.value;
+        });
+        tmpArray.forEach( el => {
+            (el.value !== 0 ) ? el["percent"] = el.value / highestValue : el["percent"] = 0;
+        });
+
         const x = document.getElementById("BarChartBox");
         x.innerHTML = "";
-        for (let i = 0; i < 170; i++) {
-            const random = Math.random();
-            const xValue = i * 5;
-            x.innerHTML += '<rect fill="lightblue" id="pillar' + i + '" x=' + xValue + ' y=' + (198 - 200 * random) + '' +
-                ' width="5" height="' + 200 * random + '"  ' +
-                'stroke="black" stroke-width="1"/>'
+        for (let i = 0; i < tmpArray.length  ; i++) { // TODO: Datum Range auswählen
+            const per = tmpArray[i].percent;
+            const datum = tmpArray[i].datum;
+            const xValue = i * 2;
+            x.innerHTML += '<rect fill="lightblue" datum="' + datum + '" id="pillar' + i + '" x=' + xValue + ' y=' + (198 - 200 * per) + '' +
+                ' width="2" height="' + 200 * per + '"  ' +
+                'stroke="none" stroke-width="0.5"/>'
         }
     }
+
     // binding what changes can Occure?
 
-    hustleController.getFokus().onSelectionChange(render);
-    hustleController.getFokus().onSequenceChange(render);
+    focus.onSelectionChange(render);
+    // focus.onSequenceChange(render);
 
     return {
         render: render
     }
 };
 
-const CantonsView = (hustleController, rootElement) => {
+const CantonsView = (hustleController, focusController, timeController, rootElement) => {
 
-    const render = () => // do the stuff that needs to be done
-        numberOfTasksElement.innerText = "" + todoController.numberOfTodos();
+    const render = () => {
+
+    }// do the stuff that needs to be done
 
     // binding what changes can Occure?
 
-    todoController.onTodoAdd(render);
-    todoController.onTodoRemove(render);
+    focusController.onChange(render);
 };
 
 

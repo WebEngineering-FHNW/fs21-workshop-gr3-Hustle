@@ -18,7 +18,7 @@
             <td>
                 <div id="focusBox">
                     Fokus:
-                    <select id="focusSelect">
+                    <select id="focusSelection">
                         <option>Positiv getestet</option>
                         <option>Todesfälle</option>
                         <option>Hospitalisierte</option>
@@ -45,9 +45,9 @@
 
                     <g transform="translate(0,400)">
                         <g transform="scale(1,-1)">
-                            <svg viewBox="0 0 870 200">
+                            <svg viewBox="0 0 730 200" id="BarChartBox" onload="">
 
-                                <rect id="pillar1" x="0" y="0" width="50" height="200" fill="grey" stroke="black"
+                                <!--<rect id="pillar1" x="0" y="0" width="50" height="200" fill="grey" stroke="black"
                                       stroke-width="1"/>
                                 <rect id="pillar2" x="50" y="80" width="50" height="120" fill="grey" stroke="black"
                                       stroke-width="1"/>
@@ -72,9 +72,9 @@
                                 <rect id="pillar11" x="500" y="80" width="50" height="120" fill="grey" stroke="black"
                                       stroke-width="1"/>
                                 <rect id="pillar12" x="550" y="60" width="50" height="140" fill="grey" stroke="black"
-                                      stroke-width="1"/>
+                                      stroke-width="1"/>-->
 
-                                <path class="path1" stroke-width="5" stroke="black" d="M0 200 l550 0"/>
+                                <path class="path1 stroke-black" stroke-width="5"  d="M0 200 l857 0"/>
 
                             </svg>
                         </g>
@@ -268,18 +268,22 @@
 </div>
 
 <script type="module">
-    import {HustleController, FokusView} from "./Controller.js";
+    import {HustleController, FokusView, TimeView, CantonsView} from "./Controller.js";
 
 
     //Controllers Initialisieren:
     const controller = HustleController();
     const focusContr = controller.getFokus();
+    const timeContr = controller.getTimeSelection();
+    const cantonContr = controller.getCantonSelection();
 
     //FokusView erstellen:
-    const fokusView = FokusView(controller, focusContr, document.getElementById('focusBox'));
+    const fokusView = FokusView(controller,focusContr, document.getElementById('focusBox'));
+    const timeView = TimeView(controller,focusContr, cantonContr, timeContr, document.getElementById('datesBox'))
 
     //rendern:
     fokusView.render();
+    // timeView.render();
 
     let cantonNamesArray = [];
 
