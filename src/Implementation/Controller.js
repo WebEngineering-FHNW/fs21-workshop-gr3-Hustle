@@ -13,7 +13,6 @@ const HustleController = () => {
     const focusList = [
         {name:"Faelle", value:"Cases"},
         {name:"Tote", value:"Death"},
-        {name:"Total geimpft", value:"FullyVacc"},
         {name:"Hospitalisiert", value:"Hosp"},
         {name:"Notaufnahme (alle)", value:"IcuAll"},
         {name:"Notaufnahme (Covid)", value:"IcuCovid"},
@@ -22,8 +21,7 @@ const HustleController = () => {
         {name:"R-Wert", value:"medianR"},
         {name:"Positiv getestet", value:"TestPositiv"},
         {name:"Negativ getestet", value:"TestNegativ"},
-        {name:"Total Tests", value:"TestTotal"},
-        {name:"Impfdosen", value:"VaccAdministred"}
+        {name:"Total Tests", value:"TestTotal"}
     ];
 
     const cantons = [
@@ -96,14 +94,14 @@ const HustleController = () => {
     };
 
     const timeSelection = () => {
-        const start = Attribute("");
-        const end = Attribute("");
+        const start = Attribute("2020-06-01");
+        const end = Attribute("2020-11-15");
 
         return{
             setStart:           start.getObs(VALUE).setValue,
             getStart:           start.getObs(VALUE).getValue,
-            setEnd:             end.getObs(VALUE).getValue,
-            getEnd:             end.getObs(VALUE).setValue,
+            setEnd:             end.getObs(VALUE).setValue,
+            getEnd:             end.getObs(VALUE).getValue,
             onStartChange:      start.getObs(VALUE).onChange,
             onEndChange:        end.getObs(VALUE).onChange
         }
@@ -238,7 +236,7 @@ const TimeView = (hustleController, focus, canton, time, rootElement) => {
 
         const x = document.getElementById("BarChartBox");
         x.innerHTML = "";
-        for (let i = 0; i < tmpArray.length  ; i++) { // TODO: Datum Range auswählen
+        for (let i = 0; i < tmpArray.length  ; i++) {
             const per = tmpArray[i].percent;
             const datum = tmpArray[i].datum;
             const xValue = i * 2;
@@ -248,10 +246,31 @@ const TimeView = (hustleController, focus, canton, time, rootElement) => {
         }
     }
 
+    const repaintRectangles = () => {
+        const x = document.getElementById("BarChartBox");
+        let rects = [... x.children];
+        let start = Date.parse(time.getStart());
+        let end = Date.parse(time.getEnd());
+
+        console.log("repainting start:" + start + " end: " + end);
+
+        rects.forEach( el => {
+            let d = Date.parse(el.getAttribute("datum"))
+            console.log(d);
+            if ( start <= d && d <= end ){
+                el.setAttribute("class", "selected");
+            } else {
+                el.setAttribute("class", "");
+            }
+        })
+    }
+
     // binding what changes can Occure?
 
     focus.onSelectionChange(render);
-    // focus.onSequenceChange(render);
+    focus.onSequenceChange(render);
+    time.onStartChange(repaintRectangles);
+    time.onEndChange(repaintRectangles);
 
     return {
         render: render
