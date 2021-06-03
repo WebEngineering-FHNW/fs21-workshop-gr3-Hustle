@@ -11,24 +11,23 @@ const DEBUG = true;
 const HustleController = () => {
 
     const focusList = [
-        {name:"Faelle", value:"Cases"},
-        {name:"Tote", value:"Death"},
-        {name:"Hospitalisiert", value:"Hosp"},
-        {name:"Notaufnahme (alle)", value:"IcuAll"},
-        {name:"Notaufnahme (Covid)", value:"IcuCovid"},
-        {name:"Notaufnahme (max)", value:"IcuCapacity"},
-        {name:"Total Betten", value:"TotalCapacity"},
-        {name:"R-Wert", value:"medianR"},
-        {name:"Positiv getestet", value:"TestPositiv"},
-        {name:"Negativ getestet", value:"TestNegativ"},
-        {name:"Total Tests", value:"TestTotal"}
-    ];
+        {name:"Faelle", value:"Cases"                   , ctype: "add", ttype: "add"},
+        {name:"Tote", value:"Death"                     , ctype: "add", ttype: "add"},
+        {name:"Hospitalisiert", value:"Hosp"            , ctype:"average", ttype: "add"},
+        {name:"Notaufnahme (alle)", value:"IcuAll"      , ctype:"add", ttype: "add"},
+        {name:"Notaufnahme (Covid)", value:"IcuCovid"   , ctype:"add", ttype: "add"},
+        {name:"Notaufnahme (max)", value:"IcuCapacity"  , ctype:"average", ttype: "add"},
+        {name:"Total Betten", value:"TotalCapacity"     , ctype:"average", ttype: "add"},
+        {name:"R-Wert", value:"medianR"                 , ctype:"average", ttype: "average"},
+        {name:"Positiv getestet", value:"TestPositiv"   , ctype:"add", ttype: "average"},
+        {name:"Negativ getestet", value:"TestNegativ"   , ctype:"add", ttype: "average"},
+   ];
 
     const cantons = [
         {name:"Aargau", value:"AG"},
         {name:"Appenzell A.r.", value:"AR"},
         {name:"Appenzell I.r.", value:"AI"},
-        {name:"Basel-Landschaft", value:"BL"},
+        {name:"Basel-Land", value:"BL"},
         {name:"Basel-Stadt", value:"BS"},
         {name:"Bern", value:"BE"},
         {name:"Freiburg", value:"FR"},
@@ -135,20 +134,52 @@ const HustleController = () => {
 
         const filterForTime = () => {
             let cantonSelection = cantonController.getSelection();
+            let focusSelection = focusController.getSelection();
+            let selData = [];
+            let data = [];
             if (focusController.getSequence() === "time" || cantonSelection.length === 0){
-                return preSelectedData.filter(el => {
+                selData = preSelectedData.filter(el => {
                     return el.geoRegion == "CH";
                 })
             } else {
-                return preSelectedData.filter(el => {
+                selData = preSelectedData.filter(el => {
                     return cantonSelection.includes(el.geoRegion);
                 });
             }
+
+            selData.forEach( el => {
+                let d = el.datum;
+                let value = el[focusSelection];
+                // Fokus Auswahl bereinigen
+                if (value === "NA"){
+                    value = 0;
+                } else {
+                    value = parseFloat(value);
+                }
+
+                // Pro Datum zusammenzählen
+                let tmpEntry = data.find(el => {return el.datum === d});
+                if (tmpEntry) {
+                    tmpEntry.value += value;
+                    tmpEntry.count += 1;
+                } else {
+                    data.push({datum: d, value: value, count: 1});
+                }
+            });
+
+            let focusElement = focusList.find(el => el.value === focusSelection);
+            if (focusElement && focusElement.ttype === "average"){
+                data.forEach( el => el.value /= el.count);
+            }
+
+            return data;
+
         }
 
         const filterForCanton = () => {
             let start = Date.parse(timeController.getStart());
             let end = Date.parse(timeController.getEnd());
+            let focusSelection = focusController.getSelection();
             let selData = [];
             let data = [];
 
@@ -163,7 +194,7 @@ const HustleController = () => {
 
             selData.forEach( el => {
                 let reg = el.geoRegion;
-                let value = el[focusController.getSelection()];
+                let value = el[focusSelection];
                 // Fokus Auswahl bereinigen
                 if (value === "NA"){
                     value = 0;
@@ -171,14 +202,21 @@ const HustleController = () => {
                     value = parseFloat(value);
                 }
 
-                // Pro Datum zusammenzählen
+                // Pro Kanton zusammenzählen
                 let tmpEntry = data.find(el => {return el.geoRegion === reg});
                 if (tmpEntry) {
                     tmpEntry.value += value;
+                    tmpEntry.count += 1;
                 } else {
-                    data.push({geoRegion: reg, value: value});
+                    data.push({geoRegion: reg, value: value, count: 1});
                 }
             });
+
+            let focusElement = focusList.find(el => el.value === focusSelection);
+            if (focusElement && focusElement.ctype === "average"){
+                data.forEach( el =>  el.value = (el.value / el.count ).toFixed(4));
+            }
+
             return data;
         }
         return {

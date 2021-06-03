@@ -93,28 +93,7 @@ const TimeView = (hustleController, focusController, cantonController, timeContr
     let firstTimeSel = [];
     const render = () => {
         console.log("TimeView: ");
-        let tmpArray = [];
-
-        let selData = dataController.filterForTime();
-
-        selData.forEach( el => {
-            let d = el.datum;
-            let value = el[focusController.getSelection()];
-            // Fokus Auswahl bereinigen
-            if (value === "NA"){
-                value = 0;
-            } else {
-                value = parseFloat(value);
-            }
-
-            // Pro Datum zusammenzählen
-            let tmpEntry = tmpArray.find(el => {return el.datum === d});
-            if (tmpEntry) {
-                tmpEntry.value += value;
-            } else {
-                tmpArray.push({datum: d,value: value});
-            }
-        });
+        let tmpArray = dataController.filterForTime();
 
         let highestValue = 0;
         tmpArray.forEach( el => {
@@ -177,7 +156,7 @@ const CantonsView = (hustleController, focusController, cantonController, timeCo
             div.onclick = _ => cantonController.toggleSel(el.value);
 
             div.innerHTML =
-                `<svg id="cantonBox${el.value}" class="cantonSelection" width="198" height="40" style="margin:0;">
+                `<svg id="cantonBox${el.value}" class="cantonSelection" width="197" height="40" style="margin:0;">
                     <rect x="0" y="0" width="100%" height="100%" fill="#D3E0EA" style="margin:0;"/>
                     <rect id="${el.value}Selection" visibility="hidden" fill-opacity="0" x="0" y="0" width="100%" 
                         height="100%" stroke='#CA5375' stroke-width="5" style="margin:0;"/>
