@@ -17,20 +17,26 @@
         <tr>
             <td>
                 <div id="focusBox">
-                    Fokus:
-                    <select id="focusSelection">
-                        <option>Positiv getestet</option>
-                        <option>Todesfälle</option>
-                        <option>Hospitalisierte</option>
-                        <option>Quarantäne</option>
-                        <option>Getestet</option>
-                    </select>
-                    Facettierte Suche / Reihenfolge: <br>
+                    <label class="font-heading">Fokus:</label>
+                    <label>
+                        <select class="font-heading" id="focusSelection">
+                            <option>Positiv getestet</option>
+                            <option>Todesfälle</option>
+                            <option>Hospitalisierte</option>
+                            <option>Quarantäne</option>
+                            <option>Getestet</option>
+                        </select>
+                    </label>
+
+                    <br>
+                    <br>
+                    <div class="font-regularText"> Wählen Sie aus, ob zuerst nach Zeit oder Kanton gefiltert werden soll.</div>
+                    <br>
                     <label class="font-heading" id="LabelFilterFirst">1. Zeit</label>
                     <br>
                     <label class="font-heading" id="LabelFilterSecond">2. Kanton</label>
                     <br>
-                    <input id="switchPriorityButton" onclick="switchFilters()" src="../resources/arrows.png" type="image" value="" alt=""/>
+                    <input id="switchPriorityButton" src="../resources/arrows.png" type="image" value="" alt=""/>
                 </div>
             </td>
 
@@ -111,79 +117,78 @@
         <tr>
             <td rowspan="2">
                 <div id="cantonBox">
-                    <ul id="cantonList">
-                        <li>
-                            <div class="sortCantons">
-                                <input onclick="alert('TBD')"
-                                       type="button"
-                                       value="Sortierung: asc /desc"
-                                       class="cantonSelectButton"/>
-                            </div>
-                            <div class="lic, reset">
-                                <input onclick="hideRectangle('cantonBoxSelection1')"
-                                       type="button"
-                                       value="Auswahl zurücksetzen"
-                                       class="cantonSelectButton"/>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="liC">
-                                <svg id="cantonBox1"
-                                     onclick="toggleRectangleVis('cantonBoxSelection1', 'cantonName1')"
-                                     width="165" height="40" style="margin:0;">
-                                    <rect x="0" y="0" width="100%" height="100%" fill="#D3E0EA" style="margin:0;"/>
-                                    <!-- id="cantonBox1" onclick="cantonBox1.style.stroke='#CA5375';" -->
-                                    <rect id="cantonBoxSelection1" visibility="hidden" fill-opacity="0" x="0" y="0"
-                                          width="100%" height="100%"
-                                          stroke='#CA5375' stroke-width="5" style="margin:0; visibility:hidden;"/>
+                    <div class="sortCantons">
+                        <input onclick="alert('TBD')"
+                               type="button"
+                               value="Sortierung: asc /desc"
+                               class="cantonSelectButton"/>
+                    </div>
+                    <div class="lic, reset">
+                        <input onclick="hideRectangle('cantonBoxSelection1')"
+                               type="button"
+                               value="Auswahl zurücksetzen"
+                               class="cantonSelectButton"/>
+                    </div>
 
-                                    <text x="20" y="25" style="margin:0;" fill="blue">700</text>
-                                    <text id="cantonName1" x="80" y="25" style="margin:0;" fill="blue">Aargau</text>
-                                </svg>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="liC">
-                                <svg id="cantonBox1"
-                                     onclick="toggleRectangleVis('cantonBoxSelection2', 'cantonName2')"
-                                     width="165" height="40" style="margin:0;">
-                                    <rect x="0" y="0" width="100%" height="100%" fill="#D3E0EA" style="margin:0;"/>
-                                    <rect id="cantonBoxSelection2" visibility="hidden" fill-opacity="0" x="0" y="0"
-                                          width="100%" height="100%"
-                                          stroke='#CA5375' stroke-width="5" style="margin:0; visibility:hidden;"/>
-                                    <text x="20" y="25" style="margin:0;" fill="blue">600</text>
-                                    <text id="cantonName2" x="80" y="25" style="margin:0;" fill="blue">Basel-St.</text>
-                                </svg>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="liC">
-                                <svg id="cantonBox1"
-                                     onclick="toggleRectangleVis('cantonBoxSelection3', 'cantonName3')"
-                                     width="165" height="40" style="margin:0;">
-                                    <rect x="0" y="0" width="100%" height="100%" fill="#D3E0EA" style="margin:0;"/>
-                                    <rect id="cantonBoxSelection3" visibility="hidden" fill-opacity="0" x="0" y="0"
-                                          width="100%" height="100%"
-                                          stroke='#CA5375' stroke-width="5" style="margin:0; visibility:hidden;"/>
-                                    <text x="20" y="25" style="margin:0;" fill="blue">500</text>
-                                    <text id="cantonName3" x="80" y="25" style="margin:0;" fill="blue">Zürich</text>
-                                </svg>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="liC">
-                                <svg id="cantonBox1"
-                                     onclick="toggleRectangleVis('cantonBoxSelection4')"
-                                     width="165" height="40" style="margin:0;">
-                                    <rect x="0" y="0" width="100%" height="100%" fill="#D3E0EA" style="margin:0;"/>
-                                    <rect id="cantonBoxSelection4" visibility="hidden" fill-opacity="0" x="0" y="0"
-                                          width="100%" height="100%"
-                                          stroke='#CA5375' stroke-width="5" style="margin:0;"/>
-                                    <text x="20" y="25" style="margin:0;">...</text>
-                                </svg>
-                            </div>
-                        </li>
-                    </ul>
+<!--                    <ul id="cantonList">-->
+<!--                        <li>-->
+<!--                            <div class="liC">-->
+<!--                                <svg id="cantonBox1"-->
+<!--                                     onclick="toggleRectangleVis('cantonBoxSelection1', 'cantonName1')"-->
+<!--                                     width="165" height="40" style="margin:0;">-->
+<!--                                    <rect x="0" y="0" width="100%" height="100%" fill="#D3E0EA" style="margin:0;"/>-->
+<!--                                    &lt;!&ndash; id="cantonBox1" onclick="cantonBox1.style.stroke='#CA5375';" &ndash;&gt;-->
+<!--                                    <rect id="cantonBoxSelection1" visibility="hidden" fill-opacity="0" x="0" y="0"-->
+<!--                                          width="100%" height="100%"-->
+<!--                                          stroke='#CA5375' stroke-width="5" style="margin:0; visibility:hidden;"/>-->
+
+<!--                                    <text x="20" y="25" style="margin:0;" fill="blue">700</text>-->
+<!--                                    <text id="cantonName1" x="80" y="25" style="margin:0;" fill="blue">Aargau</text>-->
+<!--                                </svg>-->
+<!--                            </div>-->
+<!--                        </li>-->
+<!--                        <li>-->
+<!--                            <div class="liC">-->
+<!--                                <svg id="cantonBox1"-->
+<!--                                     onclick="toggleRectangleVis('cantonBoxSelection2', 'cantonName2')"-->
+<!--                                     width="165" height="40" style="margin:0;">-->
+<!--                                    <rect x="0" y="0" width="100%" height="100%" fill="#D3E0EA" style="margin:0;"/>-->
+<!--                                    <rect id="cantonBoxSelection2" visibility="hidden" fill-opacity="0" x="0" y="0"-->
+<!--                                          width="100%" height="100%"-->
+<!--                                          stroke='#CA5375' stroke-width="5" style="margin:0; visibility:hidden;"/>-->
+<!--                                    <text x="20" y="25" style="margin:0;" fill="blue">600</text>-->
+<!--                                    <text id="cantonName2" x="80" y="25" style="margin:0;" fill="blue">Basel-St.</text>-->
+<!--                                </svg>-->
+<!--                            </div>-->
+<!--                        </li>-->
+<!--                        <li>-->
+<!--                            <div class="liC">-->
+<!--                                <svg id="cantonBox1"-->
+<!--                                     onclick="toggleRectangleVis('cantonBoxSelection3', 'cantonName3')"-->
+<!--                                     width="165" height="40" style="margin:0;">-->
+<!--                                    <rect x="0" y="0" width="100%" height="100%" fill="#D3E0EA" style="margin:0;"/>-->
+<!--                                    <rect id="cantonBoxSelection3" visibility="hidden" fill-opacity="0" x="0" y="0"-->
+<!--                                          width="100%" height="100%"-->
+<!--                                          stroke='#CA5375' stroke-width="5" style="margin:0; visibility:hidden;"/>-->
+<!--                                    <text x="20" y="25" style="margin:0;" fill="blue">500</text>-->
+<!--                                    <text id="cantonName3" x="80" y="25" style="margin:0;" fill="blue">Zürich</text>-->
+<!--                                </svg>-->
+<!--                            </div>-->
+<!--                        </li>-->
+<!--                        <li>-->
+<!--                            <div class="liC">-->
+<!--                                <svg id="cantonBox1"-->
+<!--                                     onclick="toggleRectangleVis('cantonBoxSelection4')"-->
+<!--                                     width="165" height="40" style="margin:0;">-->
+<!--                                    <rect x="0" y="0" width="100%" height="100%" fill="#D3E0EA" style="margin:0;"/>-->
+<!--                                    <rect id="cantonBoxSelection4" visibility="hidden" fill-opacity="0" x="0" y="0"-->
+<!--                                          width="100%" height="100%"-->
+<!--                                          stroke='#CA5375' stroke-width="5" style="margin:0;"/>-->
+<!--                                    <text x="20" y="25" style="margin:0;">...</text>-->
+<!--                                </svg>-->
+<!--                            </div>-->
+<!--                        </li>-->
+<!--                    </ul>-->
                 </div>
             </td>
 
@@ -268,7 +273,8 @@
 </div>
 
 <script type="module">
-    import {HustleController, FokusView, TimeView, CantonsView} from "./Controller.js";
+    import {HustleController}                                                   from "./Controller.js";
+    import {FokusView, TimeView, CantonsView, KPIView, DataTableView}           from "./View.js";
 
 
     //Controllers Initialisieren:
@@ -276,13 +282,16 @@
     const focusContr = controller.getFokus();
     const timeContr = controller.getTimeSelection();
     const cantonContr = controller.getCantonSelection();
+    const dataContr = controller.getDataController(focusContr, cantonContr, timeContr);
 
     //FokusView erstellen:
     const fokusView = FokusView(controller,focusContr, document.getElementById('focusBox'));
-    const timeView = TimeView(controller,focusContr, cantonContr, timeContr, document.getElementById('datesBox'))
+    const timeView = TimeView(controller,focusContr, cantonContr, timeContr, dataContr, document.getElementById('datesBox'));
+    const cantonsView = CantonsView(controller,focusContr, cantonContr, timeContr, dataContr , document.getElementById('cantonBox'));
 
     //rendern:
     fokusView.render();
+    cantonsView.render();
     // timeView.render();
 
     let cantonNamesArray = [];

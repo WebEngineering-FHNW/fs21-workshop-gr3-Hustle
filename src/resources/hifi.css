@@ -63,6 +63,10 @@ div.liC {
     border-color: black;
 }
 
+svg.cantonSelection{
+   pointer-events: none;
+}
+
 #timeBox {
     align-content: center;
     padding: 1em;
