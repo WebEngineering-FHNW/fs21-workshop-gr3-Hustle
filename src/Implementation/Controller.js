@@ -212,7 +212,7 @@ const HustleController = () => {
 
             let focusElement = focusList.find(el => el.value === focusSelection);
             if (focusElement && focusElement.ctype === "average"){
-                data.forEach( el =>  el.value = (el.value / el.count ).toFixed(4));
+                data.forEach( el =>  el.value = (el.value / el.count ).toFixed(2));
             }
 
             return data;
