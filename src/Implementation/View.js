@@ -174,15 +174,15 @@ const CantonsView = (hustleController, focusController, cantonController, timeCo
         allC.forEach( el => {
             let div = document.createElement("div");
             div.setAttribute("class", "liC");
-            div.onclick = _ => cantonController.toggle(el.value);
+            div.onclick = _ => cantonController.toggleSel(el.value);
 
             div.innerHTML =
-                `<svg id="cantonBox${el.value}" class="cantonSelection" width="165" height="40" style="margin:0;">
+                `<svg id="cantonBox${el.value}" class="cantonSelection" width="198" height="40" style="margin:0;">
                     <rect x="0" y="0" width="100%" height="100%" fill="#D3E0EA" style="margin:0;"/>
                     <rect id="${el.value}Selection" visibility="hidden" fill-opacity="0" x="0" y="0" width="100%" 
-                        height="100%" stroke='#CA5375' stroke-width="5" style="margin:0; visibility:hidden;"/>
-                    <text id="${el.value}Value" x="20" y="25" style="margin:0;" fill="blue">700</text>
-                    <text x="80" y="25" style="margin:0;" fill="blue">${el.name}</text>
+                        height="100%" stroke='#CA5375' stroke-width="5" style="margin:0;"/>
+                    <text text-anchor="end" id="${el.value}Value" x="183" y="25" style="margin:0;" fill="blue">700</text>
+                    <text x="15" y="25" style="margin:0;" fill="blue">${el.name}</text>
                 </svg>`
 
             rootElement.appendChild(div);
@@ -204,7 +204,7 @@ const CantonsView = (hustleController, focusController, cantonController, timeCo
                 } else {
                     selElement.setAttribute( "visibility", "hidden");
                 }
-                valElement.innerText = el.value;
+                valElement.textContent = el.value;
             }
 
         })
@@ -217,18 +217,18 @@ const CantonsView = (hustleController, focusController, cantonController, timeCo
 
         data.forEach( el => {
                 let valElement = document.getElementById(el.geoRegion + "Value");
-                if (valElement) valElement.innerText = el.value;
+                if (valElement) valElement.textContent = el.value;;
         });
     }
 
     const updateSelection = () => {
-        let allC = controller.getCantons();
+        let allC = hustleController.getCantons();
+        let cantonSel = cantonController.getSelection();
 
         allC.forEach( el => {
             let selElement = document.getElementById(el.value + "Selection");
-
             if (selElement){
-                if( cantonController.getCantonSelection().includes(el.value) ){
+                if( cantonSel.includes(el.value) ){
                     selElement.setAttribute( "visibility", "visible");
                 } else {
                     selElement.setAttribute( "visibility", "hidden");
