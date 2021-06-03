@@ -58,12 +58,10 @@ const HustleController = () => {
         const sequence = Attribute("time");
 
         const onAnyChange = (f) => {sequence.getObs(VALUE).onChange(f);selection.getObs(VALUE).onChange(f);};
-        const onSequenceChange = (f) => sequence.getObs(VALUE).onChange(f);
-        const onSelectionChange = (f) => selection.getObs(VALUE).onChange(f);
 
         //debug
-        if (DEBUG) onSequenceChange( newVal => console.log(newVal) );
-        if (DEBUG) onSelectionChange( newVal => console.log(newVal) );
+        if (DEBUG) sequence.getObs(VALUE).onChange( newVal => console.log(newVal) );
+        if (DEBUG) selection.getObs(VALUE).onChange( newVal => console.log(newVal) );
 
         return{
             setSelection:       selection.getObs(VALUE).setValue,
@@ -71,8 +69,8 @@ const HustleController = () => {
             setSequence:        sequence.getObs(VALUE).setValue,
             getSequence:        sequence.getObs(VALUE).getValue,
             onChange:           onAnyChange,
-            onSequenceChange:   onSequenceChange,
-            onSelectionChange:  onSelectionChange,
+            onSequenceChange:   sequence.getObs(VALUE).onChange,
+            onSelectionChange:  selection.getObs(VALUE).onChange,
         }
     };
 
@@ -101,8 +99,8 @@ const HustleController = () => {
     };
 
     const timeController = () => {
-        const start = Attribute("2020-06-01");
-        const end = Attribute("2020-11-15");
+        const start = Attribute("2020-03-01");
+        const end = Attribute("2021-02-28");
 
         const onAnyChange = el => {
             start.getObs(VALUE).onChange(el);
@@ -139,7 +137,7 @@ const HustleController = () => {
             let data = [];
             if (focusController.getSequence() === "time" || cantonSelection.length === 0){
                 selData = preSelectedData.filter(el => {
-                    return el.geoRegion == "CH";
+                    return el.geoRegion === "CH";
                 })
             } else {
                 selData = preSelectedData.filter(el => {

@@ -284,15 +284,9 @@
     const cantonContr = controller.getCantonSelection();
     const dataContr = controller.getDataController(focusContr, cantonContr, timeContr);
 
-    //FokusView erstellen:
     const fokusView = FokusView(controller,focusContr, document.getElementById('focusBox'));
     const timeView = TimeView(controller,focusContr, cantonContr, timeContr, dataContr, document.getElementById('datesBox'));
     const cantonsView = CantonsView(controller,focusContr, cantonContr, timeContr, dataContr , document.getElementById('cantonBox'));
-
-    //rendern:
-    fokusView.render();
-    cantonsView.render();
-    // timeView.render();
 
     let cantonNamesArray = [];
 

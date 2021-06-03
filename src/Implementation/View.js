@@ -21,47 +21,6 @@ const FokusView = (hustleController, fokus, rootElement) => {
 
         let switchPriorityButton = document.getElementById("switchPriorityButton");
         switchPriorityButton.onclick = _ => switchFilters();
-
-        // <label className="font-heading">Fokus:</label>
-        // <label>
-        //     <select className="font-heading" id="focusSelection">
-        //         <option>Positiv getestet</option>
-        //         <option>Todesfälle</option>
-        //         <option>Hospitalisierte</option>
-        //         <option>Quarantäne</option>
-        //         <option>Getestet</option>
-        //     </select>
-        // </label>
-        // <br>
-        //     <br>
-        //
-        //         <div className="font-regularText"> Wählen Sie aus, ob zuerst nach Zeit oder Kanton gefiltert werden
-        //             soll.
-        //         </div>
-        //
-        //         <br>
-        //             <label className="font-heading" id="LabelFilterFirst">1. Zeit</label>
-        //             <br>
-        //                 <label className="font-heading" id="LabelFilterSecond">2. Kanton</label>
-        //                 <br>
-        //                     <input id="switchPriorityButton" src="../resources/arrows.png" type="image" value=""
-        //                            alt=""/>
-
-        // rootElement.innerHTML = `
-        //   Fokus:
-        //   <select id="focusSelect">
-        //     ${focusOptions}
-        //   </select>
-        //   </br>
-        //   </br>
-        //   <div style="">
-        //     Facetierte Suche / Reihenfolge: </br>
-        //     1. Zeit
-        //     </br>
-        //     <input type="button" value="vertauschen" text="vertauschen"/>
-        //     </br>
-        //     2. Kanton
-        //   </div>`;
     }
 
     const switchFilters = () => {
@@ -82,6 +41,7 @@ const FokusView = (hustleController, fokus, rootElement) => {
         }
     }
     // binding what changes can Occure?
+    render();
 
     return {
         render: id(render),
@@ -90,7 +50,7 @@ const FokusView = (hustleController, fokus, rootElement) => {
 };
 
 const TimeView = (hustleController, focusController, cantonController, timeController, dataController, rootElement) => {
-    let firstTimeSel = [];
+
     const render = () => {
         console.log("TimeView: ");
         let tmpArray = dataController.filterForTime();
@@ -115,6 +75,27 @@ const TimeView = (hustleController, focusController, cantonController, timeContr
         }
     }
 
+    const updateValues = () => {
+        let tmpArray = dataController.filterForTime();
+
+        let highestValue = 0;
+        tmpArray.forEach( el => {
+            if (el.value > highestValue ) highestValue = el.value;
+        });
+        tmpArray.forEach( el => {
+            (el.value !== 0 ) ? el["percent"] = el.value / highestValue : el["percent"] = 0;
+        });
+
+        for (let i = 0; i < tmpArray.length  ; i++) {
+            const per = tmpArray[i].percent;
+            const datum = tmpArray[i].datum;
+
+            let element = document.getElementById("pillar" + i);
+            element.setAttribute("y", (198 - 200 * per));
+            element.setAttribute("height", (200 * per));
+        }
+    }
+
     const repaintRectangles = () => {
         const x = document.getElementById("BarChartBox");
         let rects = [... x.children];
@@ -131,12 +112,18 @@ const TimeView = (hustleController, focusController, cantonController, timeContr
         })
     }
 
+    const checkIfUpdateNeeded = () =>{
+        if (focusController.getSequence() === "canton") updateValues();
+    }
+
+    render();
     // binding what changes can Occure?
 
-    focusController.onSelectionChange(render);
-    focusController.onSequenceChange(render);
+    focusController.onSelectionChange(updateValues);
+    focusController.onSequenceChange(updateValues);
     timeController.onStartChange(repaintRectangles);
     timeController.onEndChange(repaintRectangles);
+    cantonController.onChange(checkIfUpdateNeeded);
 
     return {
         render: render
@@ -216,6 +203,8 @@ const CantonsView = (hustleController, focusController, cantonController, timeCo
         });
     }
     // binding what changes can Occure?
+
+    render();
 
     focusController.onChange(updateValues);
     cantonController.onChange(updateSelection);
