@@ -170,7 +170,7 @@ const CantonsView = (hustleController, focusController, cantonController, timeCo
                 } else {
                     selElement.setAttribute( "visibility", "hidden");
                 }
-                valElement.textContent = el.value;
+                valElement.textContent = el.valueForm;
             }
 
         })
@@ -183,7 +183,7 @@ const CantonsView = (hustleController, focusController, cantonController, timeCo
 
         data.forEach( el => {
                 let valElement = document.getElementById(el.geoRegion + "Value");
-                if (valElement) valElement.textContent = el.value;;
+                if (valElement) valElement.textContent = el.valueForm;;
         });
     }
 
@@ -216,24 +216,117 @@ const CantonsView = (hustleController, focusController, cantonController, timeCo
 };
 
 
-const KPIView = (hustleController, rootElement) => {
+const KPIView = (hustleController, focusController, cantonController, timeController, dataController, rootElement) => {
 
-    const render = () => // do the stuff that needs to be done
+    const render = () => {
+        let titleTime = buildTag("label","titleKPI" )
+        titleTime.innerText = "ausgewählte Zeitspanne: ";
+        let vonBisLabel = buildTag("label","vonBisKPI", "vonBisKPILabel" );
+        let divTime = buildTag("div","kpiTime");
+        divTime.append(titleTime);
+        divTime.append(vonBisLabel);
+
+        let titleCanton = buildTag("label", "titleKPI");
+        titleCanton.innerText = "ausgewählte Kantone: ";
+        let cantonSelection = buildTag("label","cSelectionKPI", "cSelectionLabel" );
+        let divCanton = buildTag("div","kpiCanton");
+        divCanton.append(titleCanton);
+        divCanton.append(cantonSelection);
+
+        let divMeta = buildTag("div", "", "kpiMeta")
+        divMeta.append(divTime, divCanton);
+
+        let divKPIBoxes = buildTag("div","kpiBoxAroundFocus", "boxes");
+        let boxesCount = 6
+        let boxes = buildTag("div", "kpiBoxAround");
+
+        let focus = buildBox(0, true)
+        let focuswrapper = buildTag("div", "focusWrapper");
+        focuswrapper.append(focus)
+        for( let i = 0; i < boxesCount; i++){
+            boxes.append(buildBox(i))
+        }
+        divKPIBoxes.append(focuswrapper, boxes);
+        rootElement.append(divMeta, divKPIBoxes);
+        update()
+    }
+
+    const buildBox = (id, focus=false) => {
+        let styleC = (focus ? "fkpiBox kpiBox" : "kpiBox");
+        let idPart = (focus ? "focus" : id)
+        let bdiv = buildTag("div", styleC,"b" + idPart)
+        let t = buildTag("label", "kpi-info", "ti" + idPart );
+        let v = buildTag("label", "kpi-number", "num" + idPart )
+        bdiv.append(t, v);
+        return bdiv
+    }
+
+    const update = () => {
+        let data = dataController.filterForKpiView();
+        let kpiConf = hustleController.getKPIBoxes();
+        // update Zeit & Kantone:
+        let start = timeController.getStart();
+        let end = timeController.getEnd();
+        let fokus = focusController.getSelection();
+        let fokusList = hustleController.getFokusList();
+        let vonBis = document.getElementById("vonBisKPILabel");
+        vonBis.innerText = formatDate(start) + " - " + formatDate(end);
+
+        let cantons = cantonController.getSelection();
+        let cantonLabel = document.getElementById("cSelectionLabel");
+        let cString = (cantons.length === 0 ? "Ganze Schweiz" : cantons.join( ", "));
+
+        cantonLabel.innerText = cString;
+
+        let v = document.getElementById("tifocus")
+        let t = document.getElementById("numfocus")
+        v.innerText = fokusList.find( el => { return el.value === fokus}).name;
+        t.innerText = data.find(el => {return el.id === fokus}).valueForm;
+
+        let offset = 0;
+        for ( let i = 0; i < 6 ; i++ ){
+            if ( kpiConf[i+offset] === fokus ) offset ++;
+            let kname = fokusList.find( el => { return el.value === kpiConf[i + offset]}).name;
+            let kvalue = data.find(el => {return el.id === kpiConf[i + offset]}).valueForm;
+            document.getElementById("ti" + i).innerText = kname;
+            document.getElementById("num" + i).innerText = kvalue;
+        }
+
+    }
+
+    render();
+    // binding what changes can Occure?
+    focusController.onSelectionChange(update);
+    timeController.onChange(update);
+    cantonController.onChange(update);
+
+};
+
+const DataTableView = (hustleController, fokusController, rootElement) => {
+
+    const render = () => { // do the stuff that needs to be done
         numberOfTasksElement.innerText = "" + todoController.numberOfTodos();
+    }
+
+    const update = () =>{
+
+    }
+
 
     // binding what changes can Occure?
-
     todoController.onTodoAdd(render);
     todoController.onTodoRemove(render);
 };
 
-const DataTableView = (hustleController, rootElement) => {
+const buildTag = (name, c, id) => {
+    let v = document.createElement(name);
+    v.setAttribute("class", c)
+    if (id) v.setAttribute("id", id);
+    return v
+}
 
-    const render = () => // do the stuff that needs to be done
-        numberOfTasksElement.innerText = "" + todoController.numberOfTodos();
-
-    // binding what changes can Occure?
-
-    todoController.onTodoAdd(render);
-    todoController.onTodoRemove(render);
-};
+const formatDate = (d)=>{
+    let date = new Date(d);
+    let formatted_date = date.getDate() + "." + (date.getMonth() + 1) + "." + date.getFullYear()
+    return formatted_date;
+}

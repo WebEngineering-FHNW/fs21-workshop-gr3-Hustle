@@ -73,17 +73,11 @@
         <tr>
             <td rowspan="2">
                 <div id="cantonBox">
-                    <div class="sortCantons">
-                        <input onclick="alert('TBD')"
-                               type="button"
-                               value="Sortierung: asc /desc"
-                               class="cantonSelectButton"/>
-                    </div>
                     <div class="lic, reset">
-                        <input onclick="hideRectangle('cantonBoxSelection1')"
-                               type="button"
+                        <input type="button"
                                value="Auswahl zurücksetzen"
-                               class="cantonSelectButton"/>
+                               class="cantonSelectButton"
+                                id="selectionClear"/>
                     </div>
 
 <!--                    <ul id="cantonList">-->
@@ -148,39 +142,8 @@
                 </div>
             </td>
 
-            <td>
+            <td height="300px">
                 <div id="kpiBox">
-                    <label style="font-size: 16px">30.08 - 04.09.2020</label><br>
-                    <label id="cSelectionLabel" style="font-size: 20px">Auswahl: <br>
-                        Alle Kantone
-                    </label>
-
-                    <br><br>
-
-                    <div class="kpi-box-1">
-                        <label class="kpi-info">Tests - Positiv</label> <br>
-                        <label class="kpi-number">1300</label>
-                    </div>
-                    <div class="kpi-box-2 kpi-box-small">
-                        <label class="kpi-info">Todesfälle</label> <br>
-                        <label class="kpi-number">500</label>
-                    </div>
-                    <div class="kpi-box-3 kpi-box-small">
-                        <label class="kpi-info">Hospitalisierte</label> <br>
-                        <label class="kpi-number">100</label>
-                    </div>
-                    <div class="kpi-box-4 kpi-box-small">
-                        <label class="kpi-info">Quarantäne</label> <br>
-                        <label class="kpi-number">10000</label>
-                    </div>
-                    <div class="kpi-box-5 kpi-box-small">
-                        <label class="kpi-info">Getestet</label> <br>
-                        <label class="kpi-number">1300</label>
-                    </div>
-                    <div class="kpi-box-6 kpi-box-small">
-                        <label class="kpi-info">Künstlich beatmet</label> <br>
-                        <label class="kpi-number">200</label>
-                    </div>
 
                 </div>
             </td>
@@ -231,7 +194,7 @@
 <script type="module">
     import {HustleController}                                                   from "./Controller.js";
     import {FokusView, TimeView, CantonsView, KPIView, DataTableView}           from "./View.js";
-
+    import {id}                                                                 from "./church/church.js";
 
     //Controllers Initialisieren:
     const controller = HustleController();
@@ -240,33 +203,14 @@
     const cantonContr = controller.getCantonSelection();
     const dataContr = controller.getDataController(focusContr, cantonContr, timeContr);
 
-    const fokusView = FokusView(controller,focusContr, document.getElementById('focusBox'));
-    const timeView = TimeView(controller,focusContr, cantonContr, timeContr, dataContr, document.getElementById('datesBox'));
-    const cantonsView = CantonsView(controller,focusContr, cantonContr, timeContr, dataContr , document.getElementById('cantonBox'));
+    const fokusView     = FokusView     (controller,focusContr, document.getElementById('focusBox'));
+    const timeView      = TimeView      (controller,focusContr, cantonContr, timeContr, dataContr, document.getElementById('datesBox'));
+    const cantonsView   = CantonsView   (controller,focusContr, cantonContr, timeContr, dataContr , document.getElementById('cantonBox'));
+    const kpiView       = KPIView       (controller,focusContr, cantonContr, timeContr, dataContr , document.getElementById('kpiBox'))
 
-    let cantonNamesArray = [];
-
-    function toggleRectangleVis(id, cantonNameid) {
-        let recElementById = document.getElementById(id);
-
-        if (recElementById.style.visibility === "hidden") {
-            recElementById.style.visibility = "visible"
-            cantonNamesArray.push(document.getElementById(cantonNameid).textContent);
-            document.getElementById("cSelectionLabel").textContent = cantonNamesArray.join(", ")
-        } else {
-            recElementById.style.visibility = "hidden"
-            cantonNamesArray.pop();
-            document.getElementById("cSelectionLabel").textContent = cantonNamesArray.join(", ")
-        }
+    const test = () => {
+        cantonContr.clearSelection();
     }
-
-    function hideRectangle(id) {
-        let recElementById = document.getElementById(id);
-        recElementById.style.visibility = "hidden";
-        document.getElementById("cSelectionLabel").textContent = "Alle Kantone";
-        cantonNamesArray = [];
-    }
-
 
     $(function () {
         $("#slider-range").slider({
@@ -287,6 +231,7 @@
             " - " + "2021-02-28");
     });
 
+    document.getElementById("selectionClear").onclick = _ => test() ;
 
 </script>
 
