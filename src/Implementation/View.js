@@ -302,20 +302,65 @@ const KPIView = (hustleController, focusController, cantonController, timeContro
 
 };
 
-const DataTableView = (hustleController, fokusController, rootElement) => {
+const DataTableView = (hustleController, focusController, cantonController, timeController, dataController, rootElement) => {
 
     const render = () => { // do the stuff that needs to be done
-        numberOfTasksElement.innerText = "" + todoController.numberOfTodos();
+        let table = buildTag("table", "dataTable", "rawDataTable");
+        rootElement.append(table);
     }
 
     const update = () =>{
+        let data = dataController.filterForRawDataView();
+        let focus = focusController.getSelection();
+        let cantons = cantonController.getSelection();
+        let table = document.getElementById("rawDataTable")
+        let focusList = hustleController.getFokusList();
+        let firstEntry = data[0];
+        let currentTr = buildTag("tr");
+        let tmpElements = []
+        table.innerText="";
+
+        let tmp = buildTag("th");
+        tmp.innerText = "Kanton";
+        currentTr.append(tmp)
+
+        focusList.forEach( el => {
+            let name = el.name;
+            let isFocus = focus === el.value
+            tmp = buildTag("th", isFocus?"focusTd":"");
+            if (name.length >= 9) name = name.replace( " " , "\n")
+
+            tmp.innerText = isFocus? "Fokus: \n" + name: name;
+            isFocus ? currentTr.append(tmp) : tmpElements.push(tmp);
+        })
+        currentTr.append(...tmpElements);
+        table.append(currentTr);
+
+
+        //values:
+        data.forEach( el => {
+            tmpElements = []
+            currentTr = buildTag("tr");
+            tmp = buildTag("td");
+            tmp.innerText = el.canton;
+            currentTr.append(tmp);
+
+            focusList.forEach( ele => {
+                tmp = buildTag("td");
+                tmp.innerText = el[ele.value + "Form"];
+                focus === ele.value ? currentTr.append(tmp) : tmpElements.push(tmp);
+            })
+            currentTr.append(...tmpElements);
+            table.append(currentTr);
+        });
 
     }
 
-
+    render();
     // binding what changes can Occure?
-    todoController.onTodoAdd(render);
-    todoController.onTodoRemove(render);
+    focusController.onSelectionChange(update);
+    timeController.onChange(update);
+    cantonController.onChange(update);
 };
 
 const buildTag = (name, c, id) => {
